@@ -1,0 +1,10 @@
+@prefix : <http://expl.ro#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+:Ana a foaf:Person, :Student; foaf:knows :Alin, :Andrei; foaf:name "Pop Ana"; :studiazaLa :UBB; foaf:age 20.
+:Alin a foaf:Person, :Programator; foaf:knows :Maria; foaf:name "Ionescu Alin"; :lucreazaLa :Endava.
+:Andrei a foaf:Person; foaf:name "Popescu Andrei".
+:Maria a foaf:Person; foaf:name "Mihaila Maria".
+:Endava a foaf:Organization; rdfs:label "Endava SRL".
+:UBB a foaf:Organization; rdfs:label "Universitatea Babes-Bolyai".
