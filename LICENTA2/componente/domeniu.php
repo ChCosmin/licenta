@@ -80,7 +80,7 @@
       <div class="card-body">
         <h5 class="card-title"><?php echo $row['titlu'] ?></h5>
         <p class="card-text">- de <i><?php echo $row['nume_autor'] ?></i><br>Pret: <?php echo $row['pret'] ?> lei</p>
-        <a class="btn btn-primary" href="carte.php?id_carte=<?php echo $row['id_carte'] ?>">Detalii</a>
+        <a class="btn btn-primary domeniu-detalii-btn" href="carte.php?id_carte=<?php echo $row['id_carte'] ?>">Detalii</a>
       </div>
     </div>
     <?php endwhile; ?>

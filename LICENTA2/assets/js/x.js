@@ -5,16 +5,14 @@ $(document).ready(function() {
       email = $('#adresa_email'),
       coment = $('#comentariu'),
       id = $('#id_carte'),
-      submit = $("#submit");
-
+      submitComent = $("#submitComent");
       numeErr = $('#numeErr');
       emailErr = $('#emailErr');
       comentErr = $('#comentErr');
 
       numeErrMsg = emailErrMsg = comentErrMsg = '';
-
-  submit.on('click', function(e) {
-    e.preventDefault();
+    
+  submitComent.on('click', function(e) {
     if(validate()) {
       $.ajax({
         type: "POST",

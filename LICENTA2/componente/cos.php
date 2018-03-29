@@ -7,16 +7,20 @@
   $footer    = $root . '/componente/footer.php';
 
   $cosPath = $root . '/componente/cos.php';
+  $cartePath = $path . '/componente/carte.php';
 
   session_start();
   
   include($connect);
   include($header);
   include('../assets/ChromePhp.php');
-  ChromePhp::log($_SESSION);
+
   $totalGeneral = 0;  
 
-  $actiune = $_GET['actiune'];
+  if(isset($_GET['actiune'])){
+    $actiune = $_GET['actiune'];
+  }
+
   if (isset($_GET['actiune']) && $_GET['actiune'] == 'adauga'){
     $_SESSION['id_carte'][] = $_POST['id_carte'];
     $_SESSION['nr_buc'][] = 1;
@@ -25,53 +29,97 @@
     $_SESSION['nume_autor'][] = $_POST['nume_autor'];
     $totalGeneral = 0;  
   }
+
+  // modifica valore item
   if (isset($_GET['actiune']) && $_GET['actiune'] == 'modifica'){
-    for($i=0; $i<count($_SESSION['id_carte']);$i++){
-      $_SESSION['nr_buc'][$i] = $_POST['noulNrBuc'][$i];
-    }
+    ChromePhp::log($_POST);
+    // for($i=0; $i<count($_SESSION['id_carte']);$i++){
+    //   $_SESSION['nr_buc'][$i] = $_POST['noulNrBuc'][$i];
+    // }
     $totalGeneral = 0;  
   } 
-  ChromePhp::log($_SESSION);
 
+  // sterge item din cos
+  if (isset($_GET['actiune']) && $_GET['actiune'] == 'sterge'){
+    $stergeItem = $_GET['item_sters'];
+    unset($_SESSION['id_carte'][$stergeItem]);
+  }
+
+  // goleste cos
+  if (isset($_GET['actiune']) && $_GET['actiune'] == 'golesteCos'){
+    $_SESSION['titlu']=[];
+    $_SESSION['id_carte']=[];
+    $_SESSION['nume_autor']=[];
+    $_SESSION['pret']=[];
+    $_SESSION['nr_buc']=[];
+  }
+
+  // rezumat cos
+  $totalCos = 0 ;
+  $nrCarti = 0;
+  for($i=0; $i<count($_SESSION['id_carte']); $i++){      
+    $totalCos = $totalCos + ($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]);
+    $nrCarti = $nrCarti + ($_SESSION['nr_buc'][$i]);
+  }
+  
+  // ascunde cos daca este gol
+  $cosEmtpy = '';
+  if(count($_SESSION['id_carte']) === 0) {
+    $cosEmpty = 'none';
+  } else {
+    $cosEmpty = 'initial';
+  }
 ?>
 
-<div class="main-content cos-container">
-  <h1>Cosul de cumparaturi</h1>
-  <form action="<?php echo $cosPath ?>?actiune=modifica" method="POST">
-    <table border='1' cellspacing="0" cellpadding="4">
-      <tr bgcolog="#F9F1E7">
-        <td><b>Nr. buc</b></td>
-        <td><b>Carte</b></td>
-        <td><b>Pret</b></td>
-        <td><b>Total</b></td>
-      </tr>
-      <?php
-        for($i=0; $i<count($_SESSION['id_carte']); $i++){
-          print '<tr><td><input type="text" name="noulNrBuc['.$i.']" size="1" value="'.$_SESSION['nr_buc'][$i].'"></td>
-          <td><b>'.$_SESSION['titlu'][$i].'</b> de '.$_SESSION['nume_autor'][$i].'</td>
-          <td align="right">'.$_SESSION['pret'][$i].' lei</td>
-          <td align="right">'.($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]).' lei</td></tr>';
-          $totalGeneral = $totalGeneral + ($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]);
+<div class="main-content cos-container" >
+  <h2 class="width100 cos-container-title">Cosul de cumparaturi</h2>
+  <div class="width100 cos-summary">
+    <img class="cos-summary-icon" width="25" src='../assets/img/cos-icon.png' alt='cos icon'/>
+    <p class="cos-summary-text">Ai <?php echo $nrCarti ?> carti in valoare de <b><?php echo $totalCos ?> lei</b> in cos</p>
+  </div>
+  <p class="cos-notif">*schimba cantitatile si apasa modifica</p>
+  <form style="display: <?php echo $cosEmpty ?>" class="width100 cos-form" action="<?php echo $cosPath ?>" method="POST">
+    <?php
+      for($i=0; $i<count($_SESSION['id_carte']); $i++){      
+        print '<div class="cos-container-carte">';
+        $adresaImg = '../assets/covers/coperte'.$_SESSION['id_carte'][$i].'.jpg'; 
+        if(file_exists($adresaImg)){
+          print '<a class="width15" href="'.$cartePath.'?id_carte='.$_SESSION['id_carte'][$i].'"><img class="width100 cos-carte-img" src="'.$adresaImg.'" alt="book-cover" /></a>';
+        } else {
+          print '<a class="width15" href="'.$cartePath.'?id_carte='.$_SESSION['id_carte'][$i].'"><img class="width100 cos-carte-img" src="../assets/covers/no-cover.jpg" alt="book-cover" /></a>';
         }
-        print '<tr><td align="right" colspan="3"><b>Total in cos</b></td>
-        <td aligh="right"><b>'.$totalGeneral.'</b> lei</td></tr>';
-      ?>
-    </table>
-    <input type="submit" value="Modifica"><br><br>
-    Introduceti <b>0</b> pentru cartile ce doriti sa le scoateti din cos!
-    <h1>Continuare</h1>
-    <table>
-      <tr>
-        <td width="200" align="center">
-          <img src="../assets/img/left-arrow.gif">
-          <a href="index.php">Continua cumparaturi</a>
-        </td>
-        <td width="200" align="center">
-          <img src="../assets/img/cos-icon.gif">
-          <a href="casa.php">Mergi la casa</a>
-        </td>
-      </tr>
-    </table>
+        print '<div class="width65 cos-carte-detalii">';
+        print '<h5 class="cos-carte-titlu">'.$_SESSION['titlu'][$i].'</h5>';  
+        print '<p>de '.$_SESSION['nume_autor'][$i].'</p>';
+        print '<div class="italic price-color cos-carte-pret">'.$_SESSION['pret'][$i].' lei</div>';
+        print '</div>';
+
+        print '<div class="width20 cos-carte-detalii2">';
+        print 'Cantitate <input class="cos-carte-cantitate" type="text" name="noulNrBuc['.$i.']" size="1" value="'.$_SESSION['nr_buc'][$i].'">';
+        print '<div class="bold price-color cos-carte-pret-total">'.($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]).' lei</div>';
+        print '<a class="cos-carte-sterge" id="item'.$_SESSION['id_carte'][$i].'" href="'.$cosPath.'?actiune=sterge&item_sters='.$i.'">Sterge</a>';
+        print '</div>';
+        print '</div>';
+        $totalGeneral = $totalGeneral + ($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]);
+      }
+      print '<div class="cos-modifica"><a class="cos-modifica-btn" href="'.$cosPath.'?actiune=modifica">Modifica</a>';
+      print '<a class="cos-reset-btn" href="'.$cosPath.'?actiune=golesteCos">Goleste cosul</a></div>';
+      print '<div class="cos-container-pretTotal">';
+      print '<div class="width70 cos-pretTotal1"><p>Transport</p><p class="bold price-color">Total</p></div>';
+      print '<div class="width30 cos-pretTotal2"><p>Gratuit</p><p class="bold price-color">'.$totalGeneral.' lei</p></div>';
+      print '</div>';
+    ?>    
+    <div class="cos-actiuni">
+      <div class="width50 cos-actiuni-continua">
+        <img width="25" src="../assets/img/left-arrow.gif">
+        <a class="cos-actiuni-linkContinua" href="../index.php">Continua cumparaturi</a>
+      </div>
+      <div class="width50 cos-actiuni-casa">
+        <a class="cos-actiuni-linkCasa" href="casa.php">Mergi la casa</a>
+        <img width="25" src="../assets/img/cos-icon.gif">
+      </div>
+    </div>
+  </form>
 </div>
 
 <?php include($footer) ?>

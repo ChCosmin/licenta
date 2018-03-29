@@ -76,9 +76,9 @@
       
         <form class="carte-cumpara" action="cos.php?actiune=adauga" method="POST">
           <input type="hidden" name="id_carte"   value="<?=$id_carte?>">
-          <input type="hidden" name="titlu"      value="<?=$rowCarte['titlu']?>">
-          <input type="hidden" name="nume_autor" value="<?=$rowCarte['nume_autor']?>">
-          <input type="hidden" name="pret"       value="<?=$rowCarte['pret']?>">
+          <input type="hidden" name="titlu"      value="<?=$row['titlu']?>">
+          <input type="hidden" name="nume_autor" value="<?=$row['nume_autor']?>">
+          <input type="hidden" name="pret"       value="<?=$row['pret']?>">
           <h5 class="carte-pret italic">Pret: <?=$row['pret']?> lei</h5>
           <input class="btn btn-primary carte-cumpara-btn " type="submit" value="Cumpara acum!">
         </form>
@@ -97,7 +97,7 @@
         <span id="comentErr" class="width100 error"></span>
 
         <input id="id_carte" type="hidden" name="id_carte" value="<?=$id_carte?>">
-        <input id="submit" class="btn btn-primary coment-box-btn" type="submit" value="Adauga">
+        <input id="submitComent" class="btn btn-primary coment-box-btn" type="submit" value="Adauga">
       </form>
     </div>
   </section>

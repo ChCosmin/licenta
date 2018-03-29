@@ -25,7 +25,7 @@
           print '<h6 class="card-title">'.$row['titlu'].'</h6>';
           print '<p class="card-text">- de <i>'.$row['nume_autor'].'</i><br>';
           print 'Pret: '.$row['pret'].' lei</p>';
-          print '<a class="btn btn-primary" href="'.$carte.'?id_carte='.$row['id_carte'].'">Detalii</a>';
+          print '<a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$row['id_carte'].'">Detalii</a>';
           print '</div></div>';
         }
       ?>
@@ -53,7 +53,7 @@
             print '<h6 class="card-title">'.$rowCarte['titlu'].'</h6>';
             print '<p class="card-text">- de <i>'.$rowCarte['nume_autor'].'</i><br>';
             print 'Pret: '.$rowCarte['pret'].' lei</p>';
-            print '<a class="btn btn-primary" href="'.$carte.'?id_carte='.$rowVanzari['id_carte'].'">Detalii</a>';
+            print '<a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$rowVanzari['id_carte'].'">Detalii</a>';
             print '</div></div>';
           }
         }
