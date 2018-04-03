@@ -4,7 +4,6 @@
 
   $cosIcon = $path . '/assets/img/cos-icon.png';
   $cosPath = $path . '/componente/cos.php';
-
 ?>
 
 <a href="<?php echo $cosPath ?>" class="meniu-cos-container">
@@ -12,13 +11,16 @@
   <?php
     $nrCarti = 0;
     $totalValoare = 0;
+
     if($_SESSION['nr_buc']){
       for ($i = 0; $i < count($_SESSION['titlu']); $i++){
         $nrCarti = $nrCarti + ($_SESSION['nr_buc'][$i]);
         $totalValoare = $totalValoare + ($_SESSION['nr_buc'][$i] * $_SESSION['pret'][$i]);
       }
       print "<span class='meniu-cos-nrCarti'>".$nrCarti."</span>";
-    }    
+    } else {
+      print "<span class='meniu-cos-nrCarti'>0</span>";
+    } 
   ?>
   <span class="meniu-cos-totalValoare"><?=$totalValoare?> lei</span>
 </a>

@@ -6,13 +6,13 @@
   $header       = $root . '/componente/header.php';
   $footer       = $root . '/componente/footer.php';
   $adaugaComent = $root . '/actiuni/adauga_comentariu.php';
-
+  $cartePath    = $root . '/componente/carte.php';
   session_start();
   include($connect);
   include($header); 
 
   $id_carte = $_GET['id_carte'];
-  $select = "SELECT titlu, nume_autor, descriere, pret FROM carti, autori WHERE id_carte=".$id_carte." AND carti.id_autor=autori.id_autor";
+  $select = "SELECT titlu, nume_autor, carti.descriere, pret FROM carti, autori WHERE id_carte=".$id_carte." AND carti.id_autor=autori.id_autor";
   $resursa = mysqli_query($con, $select);
   $row = mysqli_fetch_array($resursa);
 
@@ -57,6 +57,7 @@
   ?>
 
 <div class="main-content carte-content">
+ 
   <section class="carte-section-left">
     <div class="carte">
       <?php
@@ -72,13 +73,20 @@
       <div class="carte-detalii">
         <h2 class="carte-titlu italic"><?=$row['titlu']?></h2>
         <i>de <b><?=$row['nume_autor']?></b></i>
-        <p class="carte-descriere"><b>"</b> <?=$row['descriere']?> <b>"</b></p>
+        <?php 
+          if($row['descriere']){
+            print '<p class="carte-descriere"><b>"</b>'.$row['descriere'].'<b>"</b></p>';
+          } else {
+            print '<p class="italic carte-descriere">Nici o descriere gasita</p>';
+          }
+        ?>
       
-        <form class="carte-cumpara" action="cos.php?actiune=adauga" method="POST">
+        <form class="carte-cumpara" action="cos.php" method="POST">
           <input type="hidden" name="id_carte"   value="<?=$id_carte?>">
           <input type="hidden" name="titlu"      value="<?=$row['titlu']?>">
           <input type="hidden" name="nume_autor" value="<?=$row['nume_autor']?>">
           <input type="hidden" name="pret"       value="<?=$row['pret']?>">
+          <input type="hidden" name="actiune"    value="adauga" />
           <h5 class="carte-pret italic">Pret: <?=$row['pret']?> lei</h5>
           <input class="btn btn-primary carte-cumpara-btn " type="submit" value="Cumpara acum!">
         </form>
@@ -86,7 +94,7 @@
     </div>
     <div class="carte-adauga-coment">
       <h5 class="bold italic adauga-coment-titlu">Adauga opinia ta:</h5>
-      <form class="carte-coment-box" action="" id="x">
+      <form class="carte-coment-box" action="../actiuni/adauga_comentariu.php" method="POST" id="x">
         <input id="nume_utilizator" class="coment-box-input" type="text" name="nume_utilizator" placeholder="Nume">
         <input id="adresa_email" class="coment-box-input" type="email" name="adresa_email" placeholder="Email">
 

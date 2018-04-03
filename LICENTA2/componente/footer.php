@@ -18,6 +18,5 @@
     <script src="<?php echo $owlJs ?>"></script>
     <script src="<?php echo $carouselJs ?>"></script>
     <script src="<?php echo $mousescrollJs ?>"></script>
-    <script src="<?php echo $x ?>"></script>
   </body>
 </html>

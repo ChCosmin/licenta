@@ -2,9 +2,9 @@
   $path = "/licenta2";
   $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
 
-  $carte = $path . '/componente/carte.php'
+  $carte = $path . '/componente/carte.php';
+  $autor = $path . '/componente/autor.php';
 ?>
-
 
 <main class="main-content">  
   <section class="left-section">
@@ -14,6 +14,9 @@
         $select = "SELECT id_carte, titlu, nume_autor, pret FROM carti, autori WHERE carti.id_autor=autori.id_autor ORDER BY data LIMIT 0,8";
         $resursa = mysqli_query($con, $select);
         while($row = mysqli_fetch_array($resursa)){
+          $autorQ = "SELECT id_autor FROM autori WHERE nume_autor='".$row['nume_autor']."'";
+          $resursaAutor = mysqli_query($con, $autorQ);
+          $rowAutor = mysqli_fetch_array($resursaAutor);
           print '<div class="card card-style">';
           $adresaImg = "assets/covers/coperte".$row['id_carte'].".jpg";
           if(file_exists($adresaImg)){
@@ -23,7 +26,7 @@
           }
           print '<div class="card-body">';
           print '<h6 class="card-title">'.$row['titlu'].'</h6>';
-          print '<p class="card-text">- de <i>'.$row['nume_autor'].'</i><br>';
+          print '<p class="card-text">- de <a href="'.$autor.'?id_autor='.$rowAutor["id_autor"].'"><i>'.$row['nume_autor'].'</i></a><br>';
           print 'Pret: '.$row['pret'].' lei</p>';
           print '<a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$row['id_carte'].'">Detalii</a>';
           print '</div></div>';
@@ -42,6 +45,9 @@
           $selectCarte = "SELECT titlu, nume_autor, pret FROM carti, autori WHERE carti.id_autor=autori.id_autor AND id_carte=".$rowVanzari['id_carte'];
           $resursaCarte = mysqli_query($con, $selectCarte);
           while($rowCarte = mysqli_fetch_array($resursaCarte)){
+            $autorQ = "SELECT id_autor FROM autori WHERE nume_autor='".$rowCarte['nume_autor']."'";
+            $resursaAutor = mysqli_query($con, $autorQ);
+            $rowAutor = mysqli_fetch_array($resursaAutor);
             print '<div class="card card-style">';
             $adresaImg2 = "assets/img/coperte".$rowVanzari['id_carte'].".jpg";
             if(file_exists($adresaImg2)){
@@ -51,7 +57,7 @@
             }
             print '<div class="card-body">';
             print '<h6 class="card-title">'.$rowCarte['titlu'].'</h6>';
-            print '<p class="card-text">- de <i>'.$rowCarte['nume_autor'].'</i><br>';
+            print '<p class="card-text">- de <a href="'.$autor.'?id_autor='.$rowAutor["id_autor"].'"><i>'.$rowCarte['nume_autor'].'</i></a><br>';
             print 'Pret: '.$rowCarte['pret'].' lei</p>';
             print '<a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$rowVanzari['id_carte'].'">Detalii</a>';
             print '</div></div>';

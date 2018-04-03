@@ -8,6 +8,7 @@
 
   $cosPath = $root . '/componente/cos.php';
   $cartePath = $path . '/componente/carte.php';
+  $url = $_SERVER['REQUEST_URI'];
 
   session_start();
   
@@ -17,11 +18,8 @@
 
   $totalGeneral = 0;  
 
-  if(isset($_GET['actiune'])){
-    $actiune = $_GET['actiune'];
-  }
-
-  if (isset($_GET['actiune']) && $_GET['actiune'] == 'adauga'){
+  // adauga carte
+  if (isset($_POST['actiune']) && $_POST['actiune'] == 'adauga'){
     $_SESSION['id_carte'][] = $_POST['id_carte'];
     $_SESSION['nr_buc'][] = 1;
     $_SESSION['pret'][] = $_POST['pret'];
@@ -31,18 +29,25 @@
   }
 
   // modifica valore item
-  if (isset($_GET['actiune']) && $_GET['actiune'] == 'modifica'){
-    ChromePhp::log($_POST);
-    // for($i=0; $i<count($_SESSION['id_carte']);$i++){
-    //   $_SESSION['nr_buc'][$i] = $_POST['noulNrBuc'][$i];
-    // }
+  if (isset($_POST['actiune']) && $_POST['actiune'] == 'modifica'){
+    for($i=0; $i<count($_SESSION['id_carte']);$i++){
+      $_SESSION['nr_buc'][$i] = $_POST['noulNrBuc'][$i];
+    }
     $totalGeneral = 0;  
+    header('Location: '. $cosPath);
+    exit();
   } 
 
   // sterge item din cos
   if (isset($_GET['actiune']) && $_GET['actiune'] == 'sterge'){
     $stergeItem = $_GET['item_sters'];
-    unset($_SESSION['id_carte'][$stergeItem]);
+    array_splice($_SESSION['id_carte'], $stergeItem, 1);
+    array_splice($_SESSION['pret'], $stergeItem, 1);
+    array_splice($_SESSION['titlu'], $stergeItem, 1);
+    array_splice($_SESSION['nume_autor'], $stergeItem, 1);
+    array_splice($_SESSION['nr_buc'], $stergeItem, 1);
+    header('Location: '. $cosPath);
+    exit();
   }
 
   // goleste cos
@@ -52,6 +57,8 @@
     $_SESSION['nume_autor']=[];
     $_SESSION['pret']=[];
     $_SESSION['nr_buc']=[];
+    header('Location: '. $cosPath);
+    exit();
   }
 
   // rezumat cos
@@ -69,6 +76,11 @@
   } else {
     $cosEmpty = 'initial';
   }
+
+  if($_POST){
+    header('Location: '. $_SERVER['REQUEST_URI']);
+    exit();
+  }
 ?>
 
 <div class="main-content cos-container" >
@@ -78,7 +90,7 @@
     <p class="cos-summary-text">Ai <?php echo $nrCarti ?> carti in valoare de <b><?php echo $totalCos ?> lei</b> in cos</p>
   </div>
   <p class="cos-notif">*schimba cantitatile si apasa modifica</p>
-  <form style="display: <?php echo $cosEmpty ?>" class="width100 cos-form" action="<?php echo $cosPath ?>" method="POST">
+  <form style="display: <?php echo $cosEmpty ?>" class="width100 cos-form" action="<?php $url ?>" method="POST">
     <?php
       for($i=0; $i<count($_SESSION['id_carte']); $i++){      
         print '<div class="cos-container-carte">';
@@ -102,13 +114,18 @@
         print '</div>';
         $totalGeneral = $totalGeneral + ($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]);
       }
-      print '<div class="cos-modifica"><a class="cos-modifica-btn" href="'.$cosPath.'?actiune=modifica">Modifica</a>';
-      print '<a class="cos-reset-btn" href="'.$cosPath.'?actiune=golesteCos">Goleste cosul</a></div>';
-      print '<div class="cos-container-pretTotal">';
-      print '<div class="width70 cos-pretTotal1"><p>Transport</p><p class="bold price-color">Total</p></div>';
-      print '<div class="width30 cos-pretTotal2"><p>Gratuit</p><p class="bold price-color">'.$totalGeneral.' lei</p></div>';
-      print '</div>';
-    ?>    
+    ?>
+    <div class="cos-modifica">
+      <input type="hidden" name="actiune" value="modifica" />
+      <input class="cos-modifica-btn" type="submit" value="Modifica" />
+      <a class="cos-reset-btn" href="<?php echo $cosPath ?>?actiune=golesteCos">Goleste cosul</a>
+    </div>
+
+    <div class="cos-container-pretTotal">
+      <div class="width70 cos-pretTotal1"><p>Transport</p><p class="bold price-color">Total</p></div>
+      <div class="width30 cos-pretTotal2"><p>Gratuit</p><p class="bold price-color"><?php echo $totalGeneral ?> lei</p></div>
+    </div>
+        
     <div class="cos-actiuni">
       <div class="width50 cos-actiuni-continua">
         <img width="25" src="../assets/img/left-arrow.gif">
