@@ -5,6 +5,7 @@
   $connect    = $root . '/componente/conectare.php';
   $header     = $root . '/componente/header.php';
   $footer     = $root . '/componente/footer.php';
+  $autor = $path . '/componente/autor.php';
 
   $faraCoperta = $path . '/assets/covers';
   session_start();
@@ -38,7 +39,7 @@
     $sql = '
         SELECT
             SQL_CALC_FOUND_ROWS
-            id_carte, titlu, descriere, pret, nume_autor 
+            id_carte, titlu, carti.descriere, pret, nume_autor 
         FROM
             carti, autori, domenii
         WHERE
@@ -68,6 +69,7 @@
   </div>
   <div class="container-carti-domeniu">
     <?php $index = 0; while ($row = mysqli_fetch_assoc($result)):?>
+    
     <div class="card card-style card-style-domeniu">
       <?php 
         $adresaImg = '../assets/covers/coperte'.$row['id_carte'].'.jpg'; 
@@ -76,10 +78,14 @@
         } else {
           print '<img class="card-img-top" src="'.$faraCoperta.'/no-cover.jpg" alt="book-cover" />';
         }
+        $autorQ = "SELECT id_autor FROM autori WHERE nume_autor='".$row['nume_autor']."'";
+        $resursaAutor = mysqli_query($con, $autorQ);
+        $rowAutor = mysqli_fetch_array($resursaAutor);
       ?>
+
       <div class="card-body">
         <h5 class="card-title"><?php echo $row['titlu'] ?></h5>
-        <p class="card-text">- de <i><?php echo $row['nume_autor'] ?></i><br>Pret: <?php echo $row['pret'] ?> lei</p>
+        <p class="card-text">- de <a href="<?=$autor?>?id_autor=<?=$rowAutor['id_autor']?>"><?php echo $row['nume_autor'] ?></a><br>Pret: <?php echo $row['pret'] ?> lei</p>
         <a class="btn btn-primary domeniu-detalii-btn" href="carte.php?id_carte=<?php echo $row['id_carte'] ?>">Detalii</a>
       </div>
     </div>

@@ -1,0 +1,80 @@
+/* GLOBALS */
+html,body {
+  height:100%;
+}
+
+.unselectable {
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.owl-dots {
+  display: none;
+}
+
+.owl-item {
+  width: fit-content !important;
+}
+/* WIDHTS */
+  .width100 {
+    width: 100%;
+  }
+  .width90 {
+    width: 90%;
+  }
+  .width80 {
+    width: 80%;
+  }
+  .width70 {
+    width: 70%;
+  }
+  .width65 {
+    width: 65%;
+  }
+  .width60 {
+    width: 60%;
+  }
+  .width50 {
+    width: 50%;
+  }
+  .width45 {
+    width: 45%;
+  }
+  .width40 {
+    width: 40%;
+  }
+  .width30 {
+    width: 30%;
+  }
+  .width25 {
+    width: 25%;
+  }
+  .width20 {
+    width: 20%;
+  }
+  .width15 {
+    width: 15%;
+  }
+  .width10 {
+    width: 10%;
+  }
+
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.error {
+  color: red;
+}
+.price-color {
+  color: #e84a5f;
+}
+.center-text {
+  text-align: center;
+}

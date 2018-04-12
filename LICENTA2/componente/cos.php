@@ -89,7 +89,7 @@
     <img class="cos-summary-icon" width="25" src='../assets/img/cos-icon.png' alt='cos icon'/>
     <p class="cos-summary-text">Ai <?php echo $nrCarti ?> carti in valoare de <b><?php echo $totalCos ?> lei</b> in cos</p>
   </div>
-  <p class="cos-notif">*schimba cantitatile si apasa modifica</p>
+  <p style="display: <?php echo $cosEmpty ?>" class="cos-notif">*schimba cantitatile si apasa modifica</p>
   <form style="display: <?php echo $cosEmpty ?>" class="width100 cos-form" action="<?php $url ?>" method="POST">
     <?php
       for($i=0; $i<count($_SESSION['id_carte']); $i++){      

@@ -14,7 +14,6 @@
   include($connect);
   include($header);
   $cuvant = $_GET['cuvant'];
-  include('../assets/ChromePhp.php');
 ?>
 <div class="main-content cautare-content">
   <h2 class="width100 cautare-titlu">Rezultatele cautarii</h2>
@@ -29,6 +28,7 @@
           print '<i>Nici un rezultat</i>';
         }
         while($row = mysqli_fetch_array($resursa)){
+          // $nume_autor = str_replace($cuvant, "<b>$cuvant</b>", $row['nume_autor']);
           print "<a href='".$autor."?id_autor=".$row['id_autor']."'>".$row['nume_autor']."</a><br/>";
         }
       ?>
@@ -46,6 +46,7 @@
           print '<i>Nici un rezultat</i>';
         }
         while($row = mysqli_fetch_array($resursa2)){
+          // $titlu = str_replace($cuvant, "<b>$cuvant</b>", $row['titlu']);
           print "<a href='".$carte."?id_carte=".$row['id_carte']."'>".$row['titlu']."</a><br/>";
         }
       ?>
@@ -63,6 +64,7 @@
           print '<i>Nici un rezultat</i>';
         }
         while($row = mysqli_fetch_array($resursa3)){
+          // $descriere = str_replace($cuvant, "<b>$cuvant</b>", $row['descriere']);
           print "<div class='width100 cautare-descriere'><a href='".$carte."?id_carte=".$row['id_carte']."'>".$row['titlu']."</a><i>".$row['descriere']."</i></div></br>";
         }
       ?>

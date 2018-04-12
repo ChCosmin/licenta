@@ -6,7 +6,7 @@
 ?>
 
 <form action="<?php echo $cautare ?>" method="GET" class="form-inline my-2 my-lg-0">
-  <input name="cuvant" class="form-control mr-sm-2" type="Cautare" placeholder="Cautare" aria-label="Cautare">
+  <input name="cuvant" class="form-control mr-sm-2" type="Cautare" placeholder="Tasteaza cuvant" aria-label="Cautare">
   <button class="btn btn-primary my-2 my-sm-0 meniu-search-btn" type="submit">Cauta</button>
 </form>
 
