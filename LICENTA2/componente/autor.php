@@ -60,12 +60,14 @@
           } else {
             print '<img class="card-img-top" src="'.$faraImg.'" alt="book-cover" />';
           }
-          print '<div class="card-body">';
-          print '<h6 class="card-title">'.$rowCarti['titlu'].'</h6>';
-          print '<p class="card-text">- de <i>'.$rowCarti['nume_autor'].'</i><br>';
-          print 'Pret: '.$rowCarti['pret'].' lei</p>';
-          print '<a class="btn btn-primary firstPage-detalii-btn" href="'.$cartePath.'?id_carte='.$rowCarti['id_carte'].'">Detalii</a>';
-          print '</div></div>';
+          print '
+            <div class="card-body">
+              <h6 class="card-title">'.$rowCarti['titlu'].'</h6>
+              <p class="card-text">- de <i>'.$rowCarti['nume_autor'].'</i><br>
+              Pret: '.$rowCarti['pret'].' lei</p>
+              <a class="btn btn-primary firstPage-detalii-btn" href="'.$cartePath.'?id_carte='.$rowCarti['id_carte'].'">Detalii</a>
+            </div>
+          </div>';
         }
       ?>
   </section>

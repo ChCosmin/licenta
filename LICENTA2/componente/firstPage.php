@@ -24,12 +24,14 @@
           } else {
             print '<img class="card-img-top" src="assets/covers/no-cover.jpg" alt="book-cover" />';
           }
-          print '<div class="card-body">';
-          print '<h6 class="card-title">'.$row['titlu'].'</h6>';
-          print '<p class="card-text">- de <a href="'.$autor.'?id_autor='.$rowAutor["id_autor"].'"><i>'.$row['nume_autor'].'</i></a><br>';
-          print 'Pret: '.$row['pret'].' lei</p>';
-          print '<a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$row['id_carte'].'">Detalii</a>';
-          print '</div></div>';
+          print '
+            <div class="card-body">
+              <h6 class="card-title">'.$row['titlu'].'</h6>
+              <p class="card-text">- de <a href="'.$autor.'?id_autor='.$rowAutor["id_autor"].'"><i>'.$row['nume_autor'].'</i></a><br>
+              Pret: '.$row['pret'].' lei</p>
+              <a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$row['id_carte'].'">Detalii</a>
+            </div>
+          </div>';
         }
       ?>
     </div> 
@@ -55,12 +57,14 @@
             } else {
               print '<img class="card-img-top" src="assets/covers/no-cover.jpg" alt="book-cover" />';
             }
-            print '<div class="card-body">';
-            print '<h6 class="card-title">'.$rowCarte['titlu'].'</h6>';
-            print '<p class="card-text">- de <a href="'.$autor.'?id_autor='.$rowAutor["id_autor"].'"><i>'.$rowCarte['nume_autor'].'</i></a><br>';
-            print 'Pret: '.$rowCarte['pret'].' lei</p>';
-            print '<a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$rowVanzari['id_carte'].'">Detalii</a>';
-            print '</div></div>';
+            print '
+              <div class="card-body">
+                <h6 class="card-title">'.$rowCarte['titlu'].'</h6>
+                <p class="card-text">- de <a href="'.$autor.'?id_autor='.$rowAutor["id_autor"].'"><i>'.$rowCarte['nume_autor'].'</i></a><br>
+                Pret: '.$rowCarte['pret'].' lei</p>
+                <a class="btn btn-primary firstPage-detalii-btn" href="'.$carte.'?id_carte='.$rowVanzari['id_carte'].'">Detalii</a>
+              </div>
+            </div>';
           }
         }
       ?>

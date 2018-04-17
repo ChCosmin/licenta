@@ -25,12 +25,13 @@
     <?php 
       for($i=0; $i<count($_SESSION['id_carte']); $i++){
         if($_SESSION['nr_buc'][$i] != 0) {
-          print '<div class="casa-item">';
-          print '<p class="width10 center-text casa-item-buc">'.$_SESSION['nr_buc'][$i].'</p>';
-          print '<p class="width50 center-text casa-item-titlu"><b>'.$_SESSION['titlu'][$i].'</b> de '.$_SESSION['nume_autor'][$i].'</p>';
-          print '<p class="width20 center-text casa-item-pret">'.$_SESSION['pret'][$i].' lei</p>';
-          print '<p class="width20 center-text price-color bold casa-item-pretItem">'.($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]).' lei </p>';
-          print '</div>';
+          print '
+          <div class="casa-item">
+            <p class="width10 center-text casa-item-buc">'.$_SESSION['nr_buc'][$i].'</p>
+            <p class="width50 center-text casa-item-titlu"><b>'.$_SESSION['titlu'][$i].'</b> de '.$_SESSION['nume_autor'][$i].'</p>
+            <p class="width20 center-text casa-item-pret">'.$_SESSION['pret'][$i].' lei</p>
+            <p class="width20 center-text price-color bold casa-item-pretItem">'.($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]).' lei </p>
+          </div>';
           $totalGeneral = $totalGeneral + ($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]);
         }
       }

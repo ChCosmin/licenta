@@ -31,8 +31,7 @@
     $ultimul_id = $row['id_comentariu'];
   }
   $nrComentarii = mysqli_num_rows($resursa);
-  if($nrComentarii > 0) {
-  
+  if($nrComentarii > 0) {  
   ?>
   <form action="<?=$formulareModerareOpinii?>" method="POST">
     <input type="hidden" name="ultimul_id" value="<?=$ultimul_id?>" />

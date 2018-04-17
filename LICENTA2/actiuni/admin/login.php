@@ -1,6 +1,7 @@
 <?php 
   $path = "/licenta2";
   $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
+  
   $connect = $root . '/componente/conectare.php';
   $inapoi = $path . '/admin/indexAdmin.php';
   $admin = $path . '/admin/componenteAdmin/admin.php';

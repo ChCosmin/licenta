@@ -100,18 +100,19 @@
         } else {
           print '<a class="width15" href="'.$cartePath.'?id_carte='.$_SESSION['id_carte'][$i].'"><img class="width100 cos-carte-img" src="../assets/covers/no-cover.jpg" alt="book-cover" /></a>';
         }
-        print '<div class="width65 cos-carte-detalii">';
-        print '<h5 class="cos-carte-titlu">'.$_SESSION['titlu'][$i].'</h5>';  
-        print '<p>de '.$_SESSION['nume_autor'][$i].'</p>';
-        print '<div class="italic price-color cos-carte-pret">'.$_SESSION['pret'][$i].' lei</div>';
-        print '</div>';
+        print '
+          <div class="width65 cos-carte-detalii">
+            <h5 class="cos-carte-titlu">'.$_SESSION['titlu'][$i].'</h5>
+            <p>de '.$_SESSION['nume_autor'][$i].'</p>
+            <div class="italic price-color cos-carte-pret">'.$_SESSION['pret'][$i].' lei</div>
+          </div>
 
-        print '<div class="width20 cos-carte-detalii2">';
-        print 'Cantitate <input class="cos-carte-cantitate" type="text" name="noulNrBuc['.$i.']" size="1" value="'.$_SESSION['nr_buc'][$i].'">';
-        print '<div class="bold price-color cos-carte-pret-total">'.($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]).' lei</div>';
-        print '<a class="cos-carte-sterge" id="item'.$_SESSION['id_carte'][$i].'" href="'.$cosPath.'?actiune=sterge&item_sters='.$i.'">Sterge</a>';
-        print '</div>';
-        print '</div>';
+          <div class="width20 cos-carte-detalii2">
+            Cantitate <input class="cos-carte-cantitate" type="text" name="noulNrBuc['.$i.']" size="1" value="'.$_SESSION['nr_buc'][$i].'">
+            <div class="bold price-color cos-carte-pret-total">'.($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]).' lei</div>
+            <a class="cos-carte-sterge" id="item'.$_SESSION['id_carte'][$i].'" href="'.$cosPath.'?actiune=sterge&item_sters='.$i.'">Sterge</a>
+          </div>
+        </div>';
         $totalGeneral = $totalGeneral + ($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]);
       }
     ?>
