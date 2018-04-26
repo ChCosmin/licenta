@@ -1,0 +1,176 @@
+@prefix c: <http://chinde.ro#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+c:Carti {
+  c:RomeoSiJulieta 
+    c:domeniu c:Teatru; 
+    c:autor c:Shakespear; 
+    c:titlu "Romeo si Julieta"; 
+    c:descriere "Cea mai frumoasa poveste de dragoste";
+    c:pret 1;
+    c:data "2018-01-04"^^xsd:date;
+    a c:Carte.
+
+  c:Hamlet
+    c:domeniu c:Teatru; 
+    c:autor c:Shakespear; 
+    c:titlu "Hamlet"; 
+    c:pret 2;
+    c:data "2018-01-05"^^xsd:date;
+    a c:Carte.
+
+  c:Poezii
+    c:domeniu c:Poezii; 
+    c:autor c:Eminescu; 
+    c:titlu "Poezii"; 
+    c:descriere "Cele mai frumoase poezii";
+    c:pret 3;
+    c:data "2018-01-01"^^xsd:date;
+    a c:Carte.
+
+  c:Poezii2
+    c:domeniu c:Poezii; 
+    c:autor c:Eminescu; 
+    c:titlu "Poezii, volumul 2"; 
+    c:descriere "Carte de poezii";
+    c:pret 4;
+    c:data "2018-01-02"^^xsd:date;
+    a c:Carte.
+
+  c:Poezii3
+    c:domeniu c:Poezii; 
+    c:autor c:Eminescu; 
+    c:titlu "Poezii, volumul 3"; 
+    c:descriere "Carte de poezii";
+    c:pret 5;
+    c:data "2018-01-04"^^xsd:date;
+    a c:Carte.
+
+  c:LegendeleOlimpului
+    c:domeniu c:Povesti; 
+    c:autor c:Mitru; 
+    c:titlu "Legendele Olimpului"; 
+    c:pret 6;
+    c:data "2018-01-27"^^xsd:date;
+    a c:Carte.
+
+  c:FireDeTort
+    c:domeniu c:Poezii; 
+    c:autor c:Cosbuc; 
+    c:titlu "Fire de tort - Poezii"; 
+    c:descriere "Carte de poezii";
+    c:pret 7;
+    c:data "2018-02-04"^^xsd:date;
+    a c:Carte.
+
+  c:GeniuPustiu
+    c:domeniu c:Povesti; 
+    c:autor c:Eminescu; 
+    c:titlu "Genius Pustiu"; 
+    c:pret 8;
+    c:data "2017-12-03"^^xsd:date;
+    a c:Carte.
+}
+
+
+c:Autori {
+  c:Eminescu   
+    c:numeAutor "Mihai Eminescu";
+    c:descriere "Mihai Eminescu (nascut Mihail Eminovici; n. 15/27 ianuarie 1850, Boto?ani, Moldova - d. 15/27 iunie 1889, Iasi, România) a fost un poet, prozator si jurnalist român, socotit de cititorii români si de critica literara postuma drept cea mai importanta voce poetica din literatura româna. Receptiv la romantismele europene de secol XVIII si XIX, a asimilat viziunile poetice occidentale, creatia sa apartinând unui romantism literar relativ întârziat. In momentul în care Mihai Eminescu a recuperat temele traditionale ale Romantismului european, gustul pentru trecut si pasiunea pentru istoria nationala, careia a dorit chiar sa-i construiasca un Pantheon de voievozi, nostalgia regresiva pentru copilarie, melancolia si cultivarea starilor depresive, întoarcerea în natura etc., poezia europeana descoperea paradigma modernismului, prin Charles Baudelaire sau Stéphane Mallarmé, bunaoara. Poetul avea o buna educatie filosofica, opera sa poetica fiind influentata de marile sisteme filosofice ale epocii sale, de filosofia antica, de la Heraclit la Platon, de marile sisteme de gândire ale romantismului, de teoriile lui Arthur Schopenhauer, Immanuel Kant (de altfel Eminescu a lucrat o vreme la traducerea tratatului acestuia Critica ratiunii pure, la îndemnul lui Titu Maiorescu, cel care îi ceruse sa-si ia doctoratul în filosofia lui Kant la Universitatea din Berlin, plan nefinalizat pâna la urma) si de teoriile lui Hegel.";
+    c:sursaDescriere "https://ro.wikipedia.org/wiki/Mihai_Eminescu";
+    a c:Autor.
+  
+  c:Cosbuc     
+    c:numeAutor "George Cosbuc";
+    c:descriere "George Cosbuc (n. 20 septembrie 1866, satul Hordou din Districtul Nasaud, comitatul Bistrita-Nasaud, azi, comuna Cosbuc, judetul Bistrita-Nasaud; d. 9 mai 1918, Bucuresti) a fost un poet, critic literar si traducator român din Transilvania, membru titular al Academiei Române din anul 1916.
+
+Poezia sa apartine patrimoniului cultural national si desi este considerat un poet care a scris poezii ce se recitau la serbarile scolare sau populare, creatia sa îl recomanda drept un autor clasic al literaturii române, un om cu un gust literar desavîrsit si un autor canonic, care nu poate lipsi din manualele scolare nici în ziua de azi. A dus, de asemenea, o prodigioasa activitate de iluminare a taranilor, e un precursor al miscarii poporaniste si un tehnician desavîrsit al prozodiei, folosea o gama foarte variata de picioare metrice si de ritmuri, de la cele ale poeziei populare la terza rima. A dat o versiune completa a operei lui Dante, Divina comedie. A tradus foarte mult din lirica straina si a adaptat prin localizare la sufletul si mediul taranesc Eneida si Odiseea (Iliada a fost tradusa de contemporanul sau, George Murnu) si a introdus specii ale poeziei orientale, cum ar fi gazelul, în poezia româna. Toate aceste calitati îl recomanda pentru pozitia pe care o ocupa, de autor clasic, dar mai ales simtul echilibrului si faptul ca a scos în evidenta partea solara, idilica, a sufletului taranului român.";
+    c:sursaDescriere "https://ro.wikipedia.org/wiki/George_Co%C8%99buc";
+    a c:Autor.
+ 
+  c:Shakespear 
+    c:numeAutor "William Shakespear";
+    c:descriere "William Shakespeare (n. 23 aprilie 1564, Stratford-upon-Avon, Regatul Angliei - d. 23 aprilie/3 mai 1616, Stratford-upon-Avon, Regatul Angliei) a fost un dramaturg si poet englez, considerat cel mai mare scriitor al literaturii de limba engleza si supranumit ,Poetul din Avon (în engleza 'Bard of Avon') sau ,Lebada de pe Avon ('The Swan of Avon'). Din vasta sa opera - parte realizata în colaborare - s-au pastrat aproape 38 de piese de teatru, 154 de sonete, 2 lungi poeme narative, precum si alte multe poezii traduse în aproape fiecare limba vorbita.";
+    c:sursaDescriere "https://ro.wikipedia.org/wiki/William_Shakespeare";
+    a c:Autor.
+  
+  c:Mitru c:numeAutor "Alexandru Mitru"; a c:Autor.
+}
+
+c:Domenii {
+  c:Poezii   c:numeDomeniu "Poezii";   a c:Domeniu.
+  c:Povesti  c:numeDomeniu "Povesti";  a c:Domeniu.
+  c:Teatru   c:numeDomeniu "Teatru";   a c:Domeniu.
+  c:Romane   c:numeDomeniu "Romane";   a c:Domeniu.
+  c:Comedie  c:numeDomeniu "Comedie";  a c:Domeniu.
+  c:Drama    c:numeDomeniu "Drama";    a c:Domeniu.
+  c:Horror   c:numeDomeniu "Horror";   a c:Domeniu.
+  c:Romanta  c:numeDomeniu "Romanta";  a c:Domeniu.
+  c:Fantasy  c:numeDomeniu "Fantasy";  a c:Domeniu.
+  c:SciFi    c:numeDomeniu "SciFi";    a c:Domeniu.
+  c:Aventura c:numeDomeniu "Aventura"; a c:Domeniu.
+}
+
+
+c:Tranzactii {
+  c:T1 
+    c:data "23-02-2018"^^xsd:date; 
+    c:numeCumparator "Pop Ion";
+    c:adresaCumparator "str. Luni 12, Brasov";
+    c:onorata 1;
+    a c:Tranzactie.
+  c:T2 
+    c:data "02-02-2002"^^xsd:date; 
+    c:numeCumparator "Aaa bbb ccc";
+    c:adresaCumparator "str. Ciocarliei, Cluj";
+    c:onorata 0;
+    a c:Tranzactie.
+}
+
+c:Vanzari {
+  c:T1
+    c:carte c:Hamlet; 
+    c:bucati 1;
+    a c:Vanzare.
+
+  c:T1
+    c:carte c:Poezii;
+    c:bucati 1;
+    a c:Vanzare.
+
+  c:T2
+    c:carte c:Poezii2;
+    c:bucati 40;
+    a c:Vanzare.
+}
+
+
+c:Comentarii {
+  c:Com1
+    c:carte c:RomeoSiJulieta;
+    c:utilizator "Pop Ion";
+    c:emailUtilizator <mailto:pop.ion@ceva.com>;
+    c:comentariu "Cartea ii faina";
+    a c:Comentariu.
+
+  c:Com2
+    c:carte c:Poezii;
+    c:utilizator "asdfa";
+    c:emailUtilizator <mailto:cosmin.chinde@gmail.com>;
+    c:comentariu "sdfasfas asdfasf sfasdfa";
+    a c:Comentariu.  
+
+  c:Com3
+    c:carte c:RomeoSiJulieta;
+    c:utilizator "asdfa";
+    c:emailUtilizator <mailto:cosmin.chinde@gmail.com>;
+    c:comentariu "Peste rau si prin padure";
+    a c:Comentariu.
+}
+
+c:Admin {
+  c:Admin1
+    c:adminNume "administrator";
+    c:adminParola "parola";
+    c:ultimulComentariuModerat 63;
+}
