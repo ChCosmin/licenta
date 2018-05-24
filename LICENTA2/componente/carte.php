@@ -11,49 +11,27 @@
   include($connect);
   include($header); 
 
+  require '../vendor/autoload.php';
+  $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
+
   $id_carte = $_GET['id_carte'];
-  $select = "SELECT titlu, nume_autor, carti.descriere, pret FROM carti, autori WHERE id_carte=".$id_carte." AND carti.id_autor=autori.id_autor";
-  $resursa = mysqli_query($con, $select);
-  $row = mysqli_fetch_array($resursa);
+  // $select = "SELECT titlu, nume_autor, carti.descriere, pret FROM carti, autori WHERE id_carte=".$id_carte." AND carti.id_autor=autori.id_autor";
+  $select = 'PREFIX c: <http://chinde.ro#>
+  select ?titlu ?numeAutor ?descriereCarte ?pret where {
+      GRAPH c:Carti { 
+          ?idCarte c:titlu ?titlu. 
+          ?idCarte c:autor ?idAutor. 
+          ?idCarte c:descriere ?descriereCarte. 
+          ?idCarte c:pret ?pret
+          filter (?idCarte=c:'.$id_carte.') 
+      }
+      GRAPH c:Autori { ?idAutor c:numeAutor ?numeAutor }
+  }';
+  // $resursa = mysqli_query($con, $select);
+  $resursa=$client->query($select);
 
-  // define variables and set to empty values
-    // $name = $email  = $comment = "";
-    // $nameErr = $emailErr = $comentErr = "";
-
-    // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //   if (empty($_POST["nume_utilizator"])) {
-    //     $nameErr = "*Numele este necesar";
-    //   } else {
-    //     $name = test_input($_POST["nume_utilizator"]);
-    //   }
-    
-    //   if (empty($_POST["adresa_email"])) {
-    //     $emailErr = "*Emailul este necesar";
-    //   } else {
-    //     $email = test_input($_POST["adresa_email"]);
-    //   }
-
-    //   if (empty($_POST["comentariu"])) {
-    //     $comentErr = "*Campul nu poate fi gol";
-    //   } else {
-    //     $comment = test_input($_POST["comentariu"]);
-    //   }  
-
-    //   if($nameErr === '' && $emailErr === '' && $comentErr === ''){
-    //     include($adaugaComent);
-    //   } else {
-    
-    //   }
-    // }
-
-    // function test_input($data) {
-    //   $data = trim($data);
-    //   $data = stripslashes($data);
-    //   $data = htmlspecialchars($data);
-    //   return $data;
-    // }
-
-  
+  // $row = mysqli_fetch_array($resursa);
+  //pusca deoarece unele carti nu au c:descriere
   ?>
 
 <div class="main-content carte-content">
@@ -61,7 +39,7 @@
   <section class="carte-section-left">
     <div class="carte">
       <?php
-        $adresaImg = "../assets/covers/coperte".$id_carte.".jpg";
+        $adresaImg = "../assets/covers/".$id_carte.".jpg";
         $faraCoperta = "../assets/covers/no-cover.jpg";
 
         if(file_exists($adresaImg)){
@@ -71,23 +49,22 @@
         }
       ?>
       <div class="carte-detalii">
-        <h2 class="carte-titlu italic"><?=$row['titlu']?></h2>
-        <i>de <b><?=$row['nume_autor']?></b></i>
+        <h2 class="carte-titlu italic"><?=$resursa[0]->titlu?></h2>
+        <i>de <b><?=$resursa[0]->numeAutor?></b></i>
         <?php 
-          if($row['descriere']){
-            print '<p class="carte-descriere"><b>"</b>'.$row['descriere'].'<b>"</b></p>';
+          if($resursa[0]->descriereCarte){
+            print '<p class="carte-descriere"><b>"</b>'.$resursa[0]->descriereCarte.'<b>"</b></p>';
           } else {
             print '<p class="italic carte-descriere">Nici o descriere gasita</p>';
           }
-        ?>
-      
+        ?>      
         <form class="carte-cumpara" action="cos.php" method="POST">
           <input type="hidden" name="id_carte"   value="<?=$id_carte?>">
-          <input type="hidden" name="titlu"      value="<?=$row['titlu']?>">
-          <input type="hidden" name="nume_autor" value="<?=$row['nume_autor']?>">
-          <input type="hidden" name="pret"       value="<?=$row['pret']?>">
+          <input type="hidden" name="titlu"      value="<?=$resursa[0]->titlu?>">
+          <input type="hidden" name="nume_autor" value="<?=$resursa[0]->numeAutor?>">
+          <input type="hidden" name="pret"       value="<?=$resursa[0]->pret?>">
           <input type="hidden" name="actiune"    value="adauga" />
-          <h5 class="carte-pret italic">Pret: <?=$row['pret']?> lei</h5>
+          <h5 class="carte-pret italic">Pret: <?=$resursa[0]->pret?> lei</h5>
           <input class="btn btn-primary carte-cumpara-btn " type="submit" value="Cumpara acum!">
         </form>
       </div>
@@ -114,12 +91,25 @@
     <div class="comentarii">
       <h5 class="comentarii-titlu bold italic">Opiniile cititorilor</h5 >
       <?php
-        $selectComentarii = "SELECT * FROM comentarii WHERE id_carte=".$id_carte;
-        $resursaComentarii = mysqli_query($con, $selectComentarii);
-        while($row = mysqli_fetch_array($resursaComentarii)){
+        // $selectComentarii = "SELECT * FROM comentarii WHERE id_carte=".$id_carte;
+        $selectComentarii = 'PREFIX c: <http://chinde.ro#>
+        select ?idComent ?idCarte ?numeUtilizator ?email ?coment where {
+            GRAPH c:Comentarii {
+                ?idComent c:carte ?idCarte.
+                ?idComent c:utilizator ?numeUtilizator.
+                ?idComent c:emailUtilizator ?email.
+                ?idComent c:comentariu ?coment.
+                filter(?idCarte=c:'.$id_carte.')
+            }
+        }';
+        // $resursaComentarii = mysqli_query($con, $selectComentarii);
+        $resursaComentarii=$client->query($selectComentarii);
+        
+        // while($row = mysqli_fetch_array($resursaComentarii)){
+        foreach($resursaComentarii as $row){
           print '<div class="comentariu">
-            <a class="bold comentariu-user" href="mailto:'.$row['adresa_email'].'">'.$row['nume_utilizator'].'</a>
-            <p class="comentariu-text">'.$row['comentariu'].'</p>
+            <a class="bold comentariu-user" href="mailto:'.$row->email.'">'.$row->numeUtilizator.'</a>
+            <p class="comentariu-text">'.$row->coment.'</p>
           </div> ';
         }
       ?>

@@ -72,19 +72,21 @@ c:Carti {
     a c:Carte.
 }
 
-
 c:Autori {
   c:Eminescu   
     c:numeAutor "Mihai Eminescu";
     c:descriere "Mihai Eminescu (nascut Mihail Eminovici; n. 15/27 ianuarie 1850, Boto?ani, Moldova - d. 15/27 iunie 1889, Iasi, România) a fost un poet, prozator si jurnalist român, socotit de cititorii români si de critica literara postuma drept cea mai importanta voce poetica din literatura româna. Receptiv la romantismele europene de secol XVIII si XIX, a asimilat viziunile poetice occidentale, creatia sa apartinând unui romantism literar relativ întârziat. In momentul în care Mihai Eminescu a recuperat temele traditionale ale Romantismului european, gustul pentru trecut si pasiunea pentru istoria nationala, careia a dorit chiar sa-i construiasca un Pantheon de voievozi, nostalgia regresiva pentru copilarie, melancolia si cultivarea starilor depresive, întoarcerea în natura etc., poezia europeana descoperea paradigma modernismului, prin Charles Baudelaire sau Stéphane Mallarmé, bunaoara. Poetul avea o buna educatie filosofica, opera sa poetica fiind influentata de marile sisteme filosofice ale epocii sale, de filosofia antica, de la Heraclit la Platon, de marile sisteme de gândire ale romantismului, de teoriile lui Arthur Schopenhauer, Immanuel Kant (de altfel Eminescu a lucrat o vreme la traducerea tratatului acestuia Critica ratiunii pure, la îndemnul lui Titu Maiorescu, cel care îi ceruse sa-si ia doctoratul în filosofia lui Kant la Universitatea din Berlin, plan nefinalizat pâna la urma) si de teoriile lui Hegel.";
     c:sursaDescriere "https://ro.wikipedia.org/wiki/Mihai_Eminescu";
     a c:Autor.
-  
+  c:Mitru 
+    c:numeAutor "Alexandru Mitru"; 
+    a c:Autor.
+
   c:Cosbuc     
     c:numeAutor "George Cosbuc";
     c:descriere "George Cosbuc (n. 20 septembrie 1866, satul Hordou din Districtul Nasaud, comitatul Bistrita-Nasaud, azi, comuna Cosbuc, judetul Bistrita-Nasaud; d. 9 mai 1918, Bucuresti) a fost un poet, critic literar si traducator român din Transilvania, membru titular al Academiei Române din anul 1916.
 
-Poezia sa apartine patrimoniului cultural national si desi este considerat un poet care a scris poezii ce se recitau la serbarile scolare sau populare, creatia sa îl recomanda drept un autor clasic al literaturii române, un om cu un gust literar desavîrsit si un autor canonic, care nu poate lipsi din manualele scolare nici în ziua de azi. A dus, de asemenea, o prodigioasa activitate de iluminare a taranilor, e un precursor al miscarii poporaniste si un tehnician desavîrsit al prozodiei, folosea o gama foarte variata de picioare metrice si de ritmuri, de la cele ale poeziei populare la terza rima. A dat o versiune completa a operei lui Dante, Divina comedie. A tradus foarte mult din lirica straina si a adaptat prin localizare la sufletul si mediul taranesc Eneida si Odiseea (Iliada a fost tradusa de contemporanul sau, George Murnu) si a introdus specii ale poeziei orientale, cum ar fi gazelul, în poezia româna. Toate aceste calitati îl recomanda pentru pozitia pe care o ocupa, de autor clasic, dar mai ales simtul echilibrului si faptul ca a scos în evidenta partea solara, idilica, a sufletului taranului român.";
+    Poezia sa apartine patrimoniului cultural national si desi este considerat un poet care a scris poezii ce se recitau la serbarile scolare sau populare, creatia sa îl recomanda drept un autor clasic al literaturii române, un om cu un gust literar desavîrsit si un autor canonic, care nu poate lipsi din manualele scolare nici în ziua de azi. A dus, de asemenea, o prodigioasa activitate de iluminare a taranilor, e un precursor al miscarii poporaniste si un tehnician desavîrsit al prozodiei, folosea o gama foarte variata de picioare metrice si de ritmuri, de la cele ale poeziei populare la terza rima. A dat o versiune completa a operei lui Dante, Divina comedie. A tradus foarte mult din lirica straina si a adaptat prin localizare la sufletul si mediul taranesc Eneida si Odiseea (Iliada a fost tradusa de contemporanul sau, George Murnu) si a introdus specii ale poeziei orientale, cum ar fi gazelul, în poezia româna. Toate aceste calitati îl recomanda pentru pozitia pe care o ocupa, de autor clasic, dar mai ales simtul echilibrului si faptul ca a scos în evidenta partea solara, idilica, a sufletului taranului român.";
     c:sursaDescriere "https://ro.wikipedia.org/wiki/George_Co%C8%99buc";
     a c:Autor.
  
@@ -92,9 +94,7 @@ Poezia sa apartine patrimoniului cultural national si desi este considerat un po
     c:numeAutor "William Shakespear";
     c:descriere "William Shakespeare (n. 23 aprilie 1564, Stratford-upon-Avon, Regatul Angliei - d. 23 aprilie/3 mai 1616, Stratford-upon-Avon, Regatul Angliei) a fost un dramaturg si poet englez, considerat cel mai mare scriitor al literaturii de limba engleza si supranumit ,Poetul din Avon (în engleza 'Bard of Avon') sau ,Lebada de pe Avon ('The Swan of Avon'). Din vasta sa opera - parte realizata în colaborare - s-au pastrat aproape 38 de piese de teatru, 154 de sonete, 2 lungi poeme narative, precum si alte multe poezii traduse în aproape fiecare limba vorbita.";
     c:sursaDescriere "https://ro.wikipedia.org/wiki/William_Shakespeare";
-    a c:Autor.
-  
-  c:Mitru c:numeAutor "Alexandru Mitru"; a c:Autor.
+    a c:Autor.  
 }
 
 c:Domenii {
@@ -110,7 +110,6 @@ c:Domenii {
   c:SciFi    c:numeDomeniu "SciFi";    a c:Domeniu.
   c:Aventura c:numeDomeniu "Aventura"; a c:Domeniu.
 }
-
 
 c:Tranzactii {
   c:T1 
@@ -128,22 +127,21 @@ c:Tranzactii {
 }
 
 c:Vanzari {
-  c:T1
+  c:V1
     c:carte c:Hamlet; 
     c:bucati 1;
     a c:Vanzare.
 
-  c:T1
+  c:V1V
     c:carte c:Poezii;
     c:bucati 1;
     a c:Vanzare.
 
-  c:T2
+  c:V2
     c:carte c:Poezii2;
     c:bucati 40;
     a c:Vanzare.
 }
-
 
 c:Comentarii {
   c:Com1
