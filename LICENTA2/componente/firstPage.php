@@ -7,6 +7,7 @@
 
   require 'vendor/autoload.php';
   $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
+
 ?>
 
 <main class="main-content">  

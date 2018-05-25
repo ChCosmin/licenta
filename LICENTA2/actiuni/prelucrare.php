@@ -7,6 +7,7 @@
   $multumim = $path . '/componente/multumim.php';
 
   include($connect);
+  session_start();
 
   if($_POST['nume'] === '') {
     print 'Trebuie sa completati numele! <a href="'.$cos.'">Inapoi</a>';
@@ -17,7 +18,6 @@
     exit();
   }
   include('../assets/ChromePhp.php');
-  session_start();
   
   $nrCarti = array_sum($_SESSION['nr_buc']);
 

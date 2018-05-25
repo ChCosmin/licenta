@@ -34,14 +34,20 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="width100 navbar-nav mr-auto unselectable owl-carousel owl-theme">    
-          <li class="nav-item bold">COMENZI ADMIN:</li>     
-          <li class="nav-item "><a href="<?=$adauga?>">Adauga</a></li>
-          <li class="nav-item "><a href="<?=$modif_sterg?>">Modifica sau sterge</a></li>
-          <li class="nav-item "><a href="<?=$opinii?>">Opinii vizitatori</a></li>
-          <li class="nav-item "><a href="<?=$comenzi?>">Comenzi</a></li>
-        </ul>
-      </div>
+      
+      <?php 
+        if($_SESSION['nume_admin'] !== '') {      
+        print '<div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="width100 navbar-nav mr-auto unselectable owl-carousel owl-theme">    
+            <li class="nav-item bold">COMENZI ADMIN:</li>     
+            <li class="nav-item "><a href="'.$adauga.'">Adauga</a></li>
+            <li class="nav-item "><a href="'.$modif_sterg.'">Modifica sau sterge</a></li>
+            <li class="nav-item "><a href="'.$opinii.'">Opinii vizitatori</a></li>
+            <li class="nav-item "><a href="'.$comenzi.'">Comenzi</a></li>
+          </ul>
+        </div>';
+      } else { 
+         return null;
+        } ?>
     </nav>
   </header>

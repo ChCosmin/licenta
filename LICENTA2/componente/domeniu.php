@@ -61,14 +61,15 @@
     //         ' . (($pagination->get_page() - 1) * $records_per_page) . ', ' . $records_per_page . '
     // ';
 
+    $offset = ($pagination->get_page() - 1) * $records_per_page;
     $sql = 'PREFIX c: <http://chinde.ro#>
-      select ?idCarte ?titlu ?descriereCarte ?pret ?numeAutor where {
+      select ?idCarte ?titlu ?descriereCarte ?pret ?numeAutor ?numeDomeniu where {
         GRAPH c:Carti {
           ?idCarte c:titlu ?titlu.
-          ?idCarte c:descriere ?descriereCarte.
           ?idCarte c:pret ?pret.
           ?idCarte c:autor ?idAutor.
-          ?idCarte c:domeniu ?idDomeniu
+          ?idCarte c:domeniu c:'.$id_domeniu.'.
+          OPTIONAL {?idCarte c:descriere ?descriereCarte.}
         }
         GRAPH c:Autori {
           ?idAutor c:numeAutor ?numeAutor.
@@ -76,40 +77,19 @@
         GRAPH c:Domenii {
           c:'.$id_domeniu.' c:numeDomeniu ?numeDomeniu.
         }
-      } LIMIT
-      ' . (($pagination->get_page() - 1) * $records_per_page) . ', ' . $records_per_page . '
+      } LIMIT '. $records_per_page . '
+        OFFSET '. $offset . '
     ';
-
-    $sqlNoLimit = 'PREFIX c: <http://chinde.ro#>
-      select ?idCarte ?titlu ?descriereCarte ?pret ?numeAutor where {
-      GRAPH c:Carti {
-        ?idCarte c:titlu ?titlu.
-        ?idCarte c:descriere ?descriereCarte.
-        ?idCarte c:pret ?pret.
-        ?idCarte c:autor ?idAutor.
-        ?idCarte c:domeniu ?idDomeniu
-      }
-      GRAPH c:Autori {
-        ?idAutor c:numeAutor ?numeAutor.
-      }
-      GRAPH c:Domenii {
-        c:'.$id_domeniu.' c:numeDomeniu ?numeDomeniu.
-      }
-    }';
 
     // execute the MySQL query
     // $result = mysqli_query($con, $sql) or die(mysqli_error($con));
-    // $result = $client->query($sql);    
-    $resultNoLimit = $client->query($sqlNoLimit);
+    $result = $client->query($sql);    
     // fetch the total number of records in the table
-    // $rows = mysqli_fetch_assoc(mysqli_query($con, 'SELECT FOUND_ROWS() AS rows'));
     $rows = 0;
-    print $resultNoLimit;
-    // foreach($resultNoLimit as $row){
-    //   $rows +=1;
-    // }
+    foreach($result as $row){
+      $rows +=1;
+    }
 
-    print $rows;
     // pass the total number of records to the pagination class
     $pagination->records($rows);
 
@@ -124,10 +104,13 @@
   <div class="container-carti-domeniu">
     <?php 
     $index = 0; 
-    while ($row = mysqli_fetch_assoc($result)):?>    
+    // while ($row = mysqli_fetch_assoc($result)):
+    foreach($result as $row){
+    $idCarte = parse_url($row->idCarte)["fragment"];
+    ?>    
     <div class="card card-style card-style-domeniu">
       <?php 
-        $adresaImg = '../assets/covers/coperte'.$row['id_carte'].'.jpg'; 
+        $adresaImg = '../assets/covers/'.$idCarte.'.jpg'; 
         if(file_exists($adresaImg)){
           print '<img class="card-img-top" src="'.$adresaImg.'" alt="book-cover" />';
         } else {
@@ -137,7 +120,7 @@
         $autorQ = "PREFIX c: <http://chinde.ro#>
           select ?idAutor where {
             GRAPH c:Autori {
-              ?idAutor c:numeAutor '".$row['nume_autor']."'
+              ?idAutor c:numeAutor '".$row->numeAutor."'
             }
           }
         ";
@@ -146,14 +129,13 @@
         $idAutor = parse_url($resursaAutor[0]->idAutor)["fragment"];
         // $rowAutor = mysqli_fetch_array($resursaAutor);
       ?>
-
       <div class="card-body">
-        <h5 class="card-title"><?php echo $row['titlu'] ?></h5>
-        <p class="card-text">- de <a href="<?=$autor?>?id_autor=<?=$idAutor?>"><?php echo $row['nume_autor'] ?></a><br>Pret: <?php echo $row['pret'] ?> lei</p>
-        <a class="btn btn-primary domeniu-detalii-btn" href="carte.php?id_carte=<?php echo $row['id_carte'] ?>">Detalii</a>
+        <h5 class="card-title"><?php echo $row->titlu ?></h5>
+        <p class="card-text">- de <a href="<?=$autor?>?id_autor=<?=$idAutor?>"><?php echo $row->numeAutor ?></a><br>Pret: <?php echo $row->pret ?> lei</p>
+        <a class="btn btn-primary domeniu-detalii-btn" href="carte.php?id_carte=<?=$idCarte?>">Detalii</a>
       </div>
     </div>
-    <?php endwhile; ?>
+        <?php } ?>
   </div> 
 </div>
 

@@ -4,13 +4,23 @@
   $header    = $root . '/componente/header.php';
   $footer    = $root . '/componente/footer.php';
   $firstPage = $root . '/componente/firstPage.php';
-
+  include('assets/ChromePhp.php');
   session_start();
-  $_SESSION['titlu']=[];
-  $_SESSION['id_carte']=[];
-  $_SESSION['nume_autor']=[];
-  $_SESSION['pret']=[];
-  $_SESSION['nr_buc']=[];
+  if($_SESSION){
+    ChromePhp::log("SESSION EXISTS");
+    ChromePhp::log($_SESSION);
+    
+  } else {
+    ChromePhp::log("SESSION DOESNT EXISTS");    
+    ChromePhp::log($_SESSION);
+    
+  }
+  // $_SESSION['titlu']=[];
+  // $_SESSION['id_carte']=[];
+  // $_SESSION['nume_autor']=[];
+  // $_SESSION['pret']=[];
+  // $_SESSION['nr_buc']=[];
+  
   
   include($connect);
   include($header);

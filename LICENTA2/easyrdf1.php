@@ -20,110 +20,40 @@
   // $prefixe = new EasyRDF_Namespace();
   // $prefixe->set("","http://expl.ro#");
 
-  include('assets/Zebra_Pagination.php');
   require 'vendor/autoload.php';
   $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
- //PAGINATION
-    // how many records should be displayed on a page?
-    $records_per_page = 12;
 
-    // instantiate the pagination object
-    $pagination = new Zebra_Pagination();
-    $id_domeniu="Poezii";
-    // the MySQL statement to fetch the rows
-    // note how we build the LIMIT
-    // also, note the "SQL_CALC_FOUND_ROWS"
-    // this is to get the number of rows that would've been returned if there was no LIMIT
-    // $sql = '
-    //     SELECT
-    //         SQL_CALC_FOUND_ROWS
-    //         id_carte, titlu, carti.descriere, pret, nume_autor 
-    //     FROM
-    //         carti, autori, domenii
-    //     WHERE
-    //         carti.id_domeniu=domenii.id_domeniu AND 
-    //         carti.id_autor=autori.id_autor AND 
-    //         domenii.id_domeniu='.$id_domeniu.'
-    //     LIMIT
-    //         ' . (($pagination->get_page() - 1) * $records_per_page) . ', ' . $records_per_page . '
-    // ';
-    $offset = ($pagination->get_page() - 1) * $records_per_page;
-    $sql = 'PREFIX c: <http://chinde.ro#>
-      select ?idCarte ?titlu ?descriereCarte ?pret ?numeAutor ?numeDomeniu where {
-        GRAPH c:Carti {
-          ?idCarte c:titlu ?titlu.
-          ?idCarte c:pret ?pret.
-          ?idCarte c:autor ?idAutor.
-          ?idCarte c:domeniu ?idDomeniu.
-          OPTIONAL {?idCarte c:descriere ?descriereCarte.}
-        }
-        GRAPH c:Autori {
-          ?idAutor c:numeAutor ?numeAutor.
-        }
-        GRAPH c:Domenii {
-          c:'.$id_domeniu.' c:numeDomeniu ?numeDomeniu.
-        }
-      } LIMIT '. $records_per_page . '
-        OFFSET '. $offset . '
-    ';
+  $sql = 'PREFIX c: <http://chinde.ro#>
+          select ?idAutor ?numeAutor where {
+              GRAPH c:Autori { 
+                ?idAutor c:numeAutor ?numeAutor. 
+                filter regex(?numeAutor, "i" , "i")
+              }
+          }';
+        // $resursa = mysqli_query($con, $sql);
+    $resursa=$client->query($sql);
+    // $nrResults = 'PREFIX c: <http://chinde.ro#>
+    //               select (count(*) as ?count) where {
+    //                   GRAPH c:Autori {
+    //                       ?idAutor c:numeAutor ?numeAutor.
+    //                       filter regex(?numeAutor, "i", "i")
+    //                   }    
+    //               }';
 
-    $sqlNoLimit = 'PREFIX c: <http://chinde.ro#>
-      select ?idCarte ?titlu ?descriereCarte ?pret ?numeAutor where {
-      GRAPH c:Carti {
-        ?idCarte c:titlu ?titlu.
-        ?idCarte c:descriere ?descriereCarte.
-        ?idCarte c:pret ?pret.
-        ?idCarte c:autor ?idAutor.
-        ?idCarte c:domeniu ?idDomeniu
-      }
-      GRAPH c:Autori {
-        ?idAutor c:numeAutor ?numeAutor.
-      }
-      GRAPH c:Domenii {
-        c:'.$id_domeniu.' c:numeDomeniu ?numeDomeniu.
-      }
-    }';
-
-    // execute the MySQL query
-    // $result = mysqli_query($con, $sql) or die(mysqli_error($con));
-    $result = $client->query($sql); 
-    // $resultNoLimit = $client->query($sqlNoLimit);
-    // fetch the total number of records in the table
-    // $rows = mysqli_fetch_assoc(mysqli_query($con, 'SELECT FOUND_ROWS() AS rows'));
-    // $rows = 0;
-    // print $resultNoLimit;
-    // foreach($resultNoLimit as $row){
-    //   $rows +=1;
-    // }
+    print $resursa->dump();
+    // $resursaNrResults=$client->query($nrResults);
+    // print $resursaNrResults->dump();
+    // print $resursaNrResults[0]->count." ".gettype($resursaNrResults[0]->count)."<br>";
     $rows = 0;
-    foreach($result as $row){
-      $rows +=1;
-      print 'Id:'.$row->idCarte.' Titlu:'.$row->titlu.' Descriere:'.$row->descriereCarte.' Pret:'.$row->pret.' Autor:'.$row->numeAutor.' Domeniu:'.$row->numeDomeniu.'<br>';
+    foreach($resursa as $row){
+      $rows += 1;
+    };
+
+    if($rows === 0 ){
+      print "Nici un rezultat";
+    } else {
+      print "Gasit rezultate";
     }
-    print "TOTAL rows should be".$rows;
-    // print $rows;
-    // pass the total number of records to the pagination class
-    $pagination->records($rows);
-
-    // records per page
-    $pagination->records_per_page($records_per_page);
-
-    // foreach($result as $row){
-
-    // }
-  
-
-
-
-
-
-
-
-
-
-
-
-
 
   
   // foreach($resursa as $row){

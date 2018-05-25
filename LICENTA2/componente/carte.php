@@ -21,8 +21,8 @@
       GRAPH c:Carti { 
           ?idCarte c:titlu ?titlu. 
           ?idCarte c:autor ?idAutor. 
-          ?idCarte c:descriere ?descriereCarte. 
           ?idCarte c:pret ?pret
+          OPTIONAL {?idCarte c:descriere ?descriereCarte.} 
           filter (?idCarte=c:'.$id_carte.') 
       }
       GRAPH c:Autori { ?idAutor c:numeAutor ?numeAutor }
@@ -52,8 +52,8 @@
         <h2 class="carte-titlu italic"><?=$resursa[0]->titlu?></h2>
         <i>de <b><?=$resursa[0]->numeAutor?></b></i>
         <?php 
-          if($resursa[0]->descriereCarte){
-            print '<p class="carte-descriere"><b>"</b>'.$resursa[0]->descriereCarte.'<b>"</b></p>';
+          if(isset($resursa->descriereCarte)){
+            print '<p class="carte-descriere"><b>"</b>'.$resursa->descriereCarte.'<b>"</b></p>';
           } else {
             print '<p class="italic carte-descriere">Nici o descriere gasita</p>';
           }

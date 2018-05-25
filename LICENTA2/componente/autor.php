@@ -23,8 +23,8 @@
   select ?numeAutor ?descriere ?sursaDescriere where {
       GRAPH c:Autori {
           ?idAutor c:numeAutor ?numeAutor.
-          ?idAutor c:descriere ?descriere.
-          ?idAutor c:sursaDescriere ?sursaDescriere
+          OPTIONAL{?idAutor c:descriere ?descriere.
+          ?idAutor c:sursaDescriere ?sursaDescriere}
       }
       filter(?idAutor=c:'.$id_autor.')
   }';
@@ -65,14 +65,14 @@
     ?>
     <h2 class="autor-nume"><?=$resursaAutor[0]->numeAutor?></h2>
     <?php 
-      if($resursaAutor[0]->descriere){
+      if(isset($resursaAutor[0]->descriere)){
         print '<p class="autor-descriere">'.$resursaAutor[0]->descriere.'</p>';
       } else {
         print '<p class="italic autor-descriere">Nici o descriere gasita</p>';
       }
     ?>
     <?php
-      if($resursaAutor[0]->sursaDescriere){
+      if(isset($resursaAutor[0]->sursaDescriere)){
         print '<h5><a class="italic autor-detalii" target="_blank" href="'.$resursaAutor[0]->sursaDescriere.'">Click pentru mai multe detalii</a></h5>';
       }      
     ?>

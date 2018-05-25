@@ -41,10 +41,22 @@
     flex-wrap: wrap;
   }
 
-  .admin-firstPage-content {
-    
+  .admin-main-welcome {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
+  .admin-main-welcome-comands {
+    background-color: #d7cfbf; 
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 40px;
+    text-align: justify; 
+    line-height: 40px;
+  }
+ 
   .admin-firstPage-form {
     display: flex;
     flex-direction: column;

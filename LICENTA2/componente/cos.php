@@ -14,7 +14,6 @@
   
   include($connect);
   include($header);
-  include('../assets/ChromePhp.php');
 
   $totalGeneral = 0;  
 
@@ -30,6 +29,7 @@
 
   // modifica valore item
   if (isset($_POST['actiune']) && $_POST['actiune'] == 'modifica'){
+ 
     for($i=0; $i<count($_SESSION['id_carte']);$i++){
       $_SESSION['nr_buc'][$i] = $_POST['noulNrBuc'][$i];
     }
@@ -64,7 +64,7 @@
   // rezumat cos
   $totalCos = 0 ;
   $nrCarti = 0;
-  for($i=0; $i<count($_SESSION['id_carte']); $i++){      
+  for($i=0; $i<count($_SESSION['id_carte']); $i++){   
     $totalCos = $totalCos + ($_SESSION['pret'][$i] * $_SESSION['nr_buc'][$i]);
     $nrCarti = $nrCarti + ($_SESSION['nr_buc'][$i]);
   }
@@ -94,7 +94,7 @@
     <?php
       for($i=0; $i<count($_SESSION['id_carte']); $i++){      
         print '<div class="cos-container-carte">';
-        $adresaImg = '../assets/covers/coperte'.$_SESSION['id_carte'][$i].'.jpg'; 
+        $adresaImg = '../assets/covers/'.$_SESSION['id_carte'][$i].'.jpg'; 
         if(file_exists($adresaImg)){
           print '<a class="width15" href="'.$cartePath.'?id_carte='.$_SESSION['id_carte'][$i].'"><img class="width100 cos-carte-img" src="'.$adresaImg.'" alt="book-cover" /></a>';
         } else {

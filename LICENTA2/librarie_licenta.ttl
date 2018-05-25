@@ -166,9 +166,15 @@ c:Comentarii {
     a c:Comentariu.
 }
 
-c:Admin {
+c:Admins {
   c:Admin1
     c:adminNume "administrator";
     c:adminParola "parola";
     c:ultimulComentariuModerat 63;
+    a c:Admin.
+  c:Admin2
+    c:adminNume "cosmin";
+    c:adminParola "parolacosmin";
+    c:ultimulComentariuModerat 40;
+    a c:Admin.
 }
