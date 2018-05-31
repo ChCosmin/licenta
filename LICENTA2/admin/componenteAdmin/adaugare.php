@@ -6,6 +6,10 @@
   $headerAdmin = $root . '/admin/componenteAdmin/headerAdmin.php';
   $footerAdmin    = $root . '/admin/componenteAdmin/footerAdmin.php';
   $prelucrare = $path . '/actiuni/admin/prelucrare_adaugare.php';
+
+  require '../../vendor/autoload.php';
+  $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
+
   include($autorizare);
   include($headerAdmin);
 ?>
@@ -37,11 +41,18 @@
           <h6 class="width20">Domeniu:</h6>
           <select class="width100" name="id_domeniu">
             <?php 
-              $sql = "SELECT * FROM domenii ORDER BY nume_domeniu ASC";
-              $resursa = mysqli_query($con, $sql);
-              while($row = mysqli_fetch_array($resursa)){
-                print '<option value="'.$row['id_domeniu'].'">'.$row['nume_domeniu'].'</option>';
-              }
+              $sql = 'PREFIX c: <http://chinde.ro#>
+              select ?idDomeniu ?numeDomeniu where {
+                  GRAPH c:Domenii {
+                    ?idDomeniu c:numeDomeniu ?numeDomeniu   
+                  }
+              } order by ?numeDomeniu';
+              $resursa=$client->query($sql);
+              
+              foreach($resursa as $row){
+                $idDomeniu = parse_url($row->idDomeniu)["fragment"];
+                print '<option value="'.$idDomeniu.'">'.$row->numeDomeniu.'</option>';
+              };
             ?>
           </select>          
         </div>
@@ -50,10 +61,17 @@
           <h6 class="width20">Autor:</h6>
           <select class="width100" name="id_autor">
             <?php 
-              $sql = "SELECT * FROM autori ORDER BY nume_autor ASC";
-              $resursa = mysqli_query($con, $sql);
-              while($row = mysqli_fetch_array($resursa)){
-                print '<option value="'.$row['id_autor'].'">'.$row['nume_autor'].'</option>';
+              $sql = 'PREFIX c: <http://chinde.ro#>
+                select ?idAutor ?numeAutor where {
+                  GRAPH c:Autori {
+                    ?idAutor c:numeAutor ?numeAutor
+                  }
+                } order by ?numeAutor';
+              $resursa=$client->query($sql);
+              
+              foreach($resursa as $row){
+                $idAutor = parse_url($row->idAutor)["fragment"];
+                print '<option value="'.$idAutor.'">'.$row->numeAutor.'</option>';
               }
             ?>
           </select>

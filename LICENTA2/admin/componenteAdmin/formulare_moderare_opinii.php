@@ -7,33 +7,44 @@
     $footerAdmin    = $root . '/admin/componenteAdmin/footerAdmin.php';
     $prelucrareOpinii = $path . '/actiuni/admin/prelucrare_moderare_comentarii.php';
 
+    require '../../vendor/autoload.php';
+    $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
+
     include($autorizare);
     include($headerAdmin);
-
+    
     print '<div class="admin-main-content admin-prelucrare-opinii-content">';
-
+    
     // formular modificare comentariu
     if(isset($_POST['modifica'])){
-      $sql = "SELECT * FROM comentarii WHERE id_comentariu=".$_POST['id_comentariu'];
-      $resursa = mysqli_query($con, $sql);
-      $row = mysqli_fetch_array($resursa);
+      $sql = 'PREFIX c: <http://chinde.ro#>
+      select * where {
+          GRAPH c:Comentarii {
+              ?idCom c:carte ?idCarte.
+              ?idCom c:utilizator ?numeUtilizator.
+              ?idCom c:emailUtilizator ?emailUtilizator.
+              ?idCom c:comentariu ?coment
+          }
+      }';
+      $row = $client->query($sql);
+      
       print '
         <h1>Modifica acest comentariu</h1>
         <form action="'.$prelucrareOpinii.'" method="POST">
 
           <div class="opinii-moderare-form-item">
             <label class="width20" for="nume_utilizator">Nume:</label>
-            <input class="width70" id="nume_utilizator" type="text" name="nume_utilizator" value="'.$row['nume_utilizator'].'" />
+            <input class="width70" id="nume_utilizator" type="text" name="nume_utilizator" value="'.$row[0]->numeUtilizator.'" />
           </div>
 
           <div class="opinii-moderare-form-item">
             <label class="width20" for="adresa_email">Email:</label>
-            <input class="width70" id="adresa_email" type="text" name="adresa_email" value="'.$row['adresa_email'].'" />
+            <input class="width70" id="adresa_email" type="text" name="adresa_email" value="'.$row[0]->emailUtilizator.'" />
           </div>
 
           <div class="opinii-moderare-form-item">
             <label class="width20" for="comentariu">Comentariu:</label>
-            <textarea style="resize: none" class="width70" id="comentariu" type="text" name="comentariu" cols="45" rows="8">'.$row['comentariu'].'</textarea>
+            <textarea style="resize: none" class="width70" id="comentariu" type="text" name="comentariu" cols="45" rows="8">'.$row[0]->coment.'</textarea>
           </div>
          
           <input type="hidden" name="id_comentariu" value="'.$_POST['id_comentariu'].'" />
@@ -44,6 +55,7 @@
 
     // formular sterge comentariu
     if(isset($_POST['sterge'])){
+      ChromePhp::log($_POST);
       print '
         <h1>Esti sigur ca vrei sa stergi acest comentariu?</h1>
         <form action="'.$prelucrareOpinii.'" method="POST">

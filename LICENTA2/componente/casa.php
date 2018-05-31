@@ -1,5 +1,5 @@
 <?php 
-  $path = "/licenta2";
+  // $path = "/licenta2";
   $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
 
   $connect   = $root . '/componente/conectare.php';
@@ -7,7 +7,7 @@
   $footer    = $root . '/componente/footer.php';
 
   session_start();
-  include($connect);
+  // include($connect);
   include($header);
 
   $totalGeneral = 0;

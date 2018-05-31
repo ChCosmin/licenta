@@ -1,6 +1,6 @@
 <?php 
  $path = "/licenta2";
- $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
+//  $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
 
  $cautare = $path . '/componente/cautare.php';
 ?>

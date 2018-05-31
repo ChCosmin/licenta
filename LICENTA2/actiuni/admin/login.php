@@ -1,8 +1,8 @@
 <?php 
   $path = "/licenta2";
-  $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
+  // $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
   
-  $connect = $root . '/componente/conectare.php';
+  // $connect = $root . '/componente/conectare.php';
   $inapoi = $path . '/admin/indexAdmin.php';
   $admin = $path . '/admin/componenteAdmin/admin.php';
   session_start();
@@ -20,9 +20,8 @@
     exit;
   }
 
-  include($connect);
+  // include($connect);
   $parolaEcriptata = md5($_POST['parola']);
-  // $sql = "SELECT * FROM admin WHERE admin_nume='".$_POST['nume']."' AND admin_parola='".$parolaEcriptata."'";
   $sql = 'PREFIX c: <http://chinde.ro#>
     select * where {
       GRAPH c:Admins {
@@ -32,7 +31,6 @@
       } filter (?numeAdmin="'.$_POST['nume'].'" && ?parolaAdmin="'.$parolaEcriptata.'")
     }';
 
-  // $resursa = mysqli_query($con, $sql);
   $resursa=$client->query($sql);
   $rows = 0;
   foreach($resursa as $row){

@@ -1,37 +1,31 @@
 <?php 
-  $path = "/licenta2";
+  // $path = "/licenta2";
   $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
 
-  $connect      = $root . '/componente/conectare.php';
+  // $connect      = $root . '/componente/conectare.php';
   $header       = $root . '/componente/header.php';
   $footer       = $root . '/componente/footer.php';
   $adaugaComent = $root . '/actiuni/adauga_comentariu.php';
   $cartePath    = $root . '/componente/carte.php';
   session_start();
-  include($connect);
+  // include($connect);
   include($header); 
 
   require '../vendor/autoload.php';
   $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
 
   $id_carte = $_GET['id_carte'];
-  // $select = "SELECT titlu, nume_autor, carti.descriere, pret FROM carti, autori WHERE id_carte=".$id_carte." AND carti.id_autor=autori.id_autor";
   $select = 'PREFIX c: <http://chinde.ro#>
   select ?titlu ?numeAutor ?descriereCarte ?pret where {
       GRAPH c:Carti { 
-          ?idCarte c:titlu ?titlu. 
-          ?idCarte c:autor ?idAutor. 
-          ?idCarte c:pret ?pret
-          OPTIONAL {?idCarte c:descriere ?descriereCarte.} 
-          filter (?idCarte=c:'.$id_carte.') 
+          c:'.$id_carte.' c:titlu ?titlu. 
+          c:'.$id_carte.' c:autor ?idAutor. 
+          c:'.$id_carte.' c:pret ?pret
+          OPTIONAL {c:'.$id_carte.' c:descriere ?descriereCarte.} 
       }
       GRAPH c:Autori { ?idAutor c:numeAutor ?numeAutor }
   }';
-  // $resursa = mysqli_query($con, $select);
   $resursa=$client->query($select);
-
-  // $row = mysqli_fetch_array($resursa);
-  //pusca deoarece unele carti nu au c:descriere
   ?>
 
 <div class="main-content carte-content">
@@ -52,8 +46,8 @@
         <h2 class="carte-titlu italic"><?=$resursa[0]->titlu?></h2>
         <i>de <b><?=$resursa[0]->numeAutor?></b></i>
         <?php 
-          if(isset($resursa->descriereCarte)){
-            print '<p class="carte-descriere"><b>"</b>'.$resursa->descriereCarte.'<b>"</b></p>';
+          if(isset($resursa[0]->descriereCarte)){
+            print '<p class="carte-descriere"><b>"</b>'.$resursa[0]->descriereCarte.'<b>"</b></p>';
           } else {
             print '<p class="italic carte-descriere">Nici o descriere gasita</p>';
           }

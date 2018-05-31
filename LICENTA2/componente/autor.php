@@ -2,7 +2,7 @@
   $path = "/licenta2";
   $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
 
-  $connect      = $root . '/componente/conectare.php';
+  // $connect      = $root . '/componente/conectare.php';
   $header       = $root . '/componente/header.php';
   $footer       = $root . '/componente/footer.php';
   $adaugaComent = $root . '/actiuni/adauga_comentariu.php';
@@ -10,7 +10,7 @@
 
   
   session_start();
-  include($connect);
+  // include($connect);
   include($header); 
 
   require '../vendor/autoload.php';
@@ -18,36 +18,29 @@
 
   $id_autor = $_GET['id_autor'];
 
-  // $selectAutor = "SELECT nume_autor, descriere, sursa_descriere FROM autori WHERE id_autor=".$id_autor;
   $selectAutor ='PREFIX c: <http://chinde.ro#>
   select ?numeAutor ?descriere ?sursaDescriere where {
       GRAPH c:Autori {
-          ?idAutor c:numeAutor ?numeAutor.
-          OPTIONAL{?idAutor c:descriere ?descriere.
-          ?idAutor c:sursaDescriere ?sursaDescriere}
+          c:'.$id_autor.' c:numeAutor ?numeAutor.
+          OPTIONAL {
+            c:'.$id_autor.' c:descriere ?descriere.
+            c:'.$id_autor.' c:sursaDescriere ?sursaDescriere.
+          }
       }
-      filter(?idAutor=c:'.$id_autor.')
   }';
+  $resursaAutor = $client->query($selectAutor);  
 
-  // $resursaAutor = mysqli_query($con, $selectAutor);
-  $resursaAutor = $client->query($selectAutor);
-  
-  // $rowAutor = mysqli_fetch_array($resursaAutor);
-
-  // $selectCarti = "SELECT id_carte, titlu, pret, nume_autor FROM carti, autori WHERE carti.id_autor=".$id_autor." AND carti.id_autor=autori.id_autor";
   $selectCarti ='PREFIX c: <http://chinde.ro#>
   select ?idCarte ?titlu ?pret ?numeAutor where {
       GRAPH c:Autori {
-          ?idAutor c:numeAutor ?numeAutor.
+          c:'.$id_autor.' c:numeAutor ?numeAutor.
       }
       GRAPH c:Carti {
           ?idCarte c:titlu ?titlu.
           ?idCarte c:pret ?pret.
-          ?idCarte c:autor ?idAutor.
-          filter(?idAutor=c:'.$id_autor.')
+          ?idCarte c:autor c:'.$id_autor.'.
       }
   }';
-  // $resursaCarti = mysqli_query($con, $selectCarti);
   $resursaCarti = $client->query($selectCarti);  
 ?>
 
@@ -79,7 +72,6 @@
   </section>
   <section class="width60 autor-section-right">
       <?php
-        // while($rowCarti = mysqli_fetch_array($resursaCarti)){
         foreach($resursaCarti as $rowCarti){
           $idCarte = parse_url($rowCarti->idCarte)["fragment"];
           print '<div class="card card-style">';

@@ -7,6 +7,9 @@
   $footerAdmin    = $root . '/admin/componenteAdmin/footerAdmin.php';
   $prelucrareComenzi = $path . '/actiuni/admin/prelucrare_comenzi.php';
 
+  require '../../vendor/autoload.php';
+  $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
+
   include($autorizare);
   include($headerAdmin);
 
@@ -15,23 +18,44 @@
       <h1>Comenzi</h1>
       <h4 class="italic">Comenzi onorate</h4>
   ';
-  $sqlNrTranzactii = "SELECT * FROM tranzactii WHERE comanda_onorata=0";
-  $resursaNrTranzactii = mysqli_query($con, $sqlNrTranzactii);
-  $nrTranzactii = mysqli_num_rows($resursaNrTranzactii);
+  $sqlNrTranzactii = 'PREFIX c: <http://chinde.ro#>
+    select * where {
+        GRAPH c:Tranzactii {
+            ?idTran c:data ?dataTran.
+            ?idTran c:numeCumparator ?cumparator.
+            ?idTran c:adresaCumparator ?adresaCump.
+            ?idTran c:onorata ?comandaOnorata.
+        } filter(?comandaOnorata = 0)
+    }';
+  $resursaNrTranzactii=$client->query($sqlNrTranzactii);
+  $rows = 0;
 
-  if($nrTranzactii === 0){
+  foreach($resursaNrTranzactii as $nrTranzactii) {
+    $rows += 1;
+  }
+
+  if($rows === 0){
     print "<em>Momentan nu exista comenzi neonorate!</em>";
   }
 
-  $sqlTranzactii = "SELECT id_tranzactie, date_format(data_tranzactie,'%d-%n-%Y') as data_tranzactie, nume_cumparator, adresa_cumparator from tranzactii where comanda_onorata=0";
-  $resursaTranzactii = mysqli_query($con, $sqlTranzactii);
-  while($rowTranzactie = mysqli_fetch_array($resursaTranzactii)){
-    $totalGeneral = 0;
+  $sqlTranzactii = 'PREFIX c: <http://chinde.ro#>
+    select ?idTranzactie ?dataTranzactie ?numeCumparator ?adresaCumparator where {
+      GRAPH c:Tranzactii {
+        ?idTranzactie c:data ?dataTranzactie.
+        ?idTranzactie c:numeCumparator ?numeCumparator.
+        ?idTranzactie c:adresaCumparator ?adresaCumparator.
+        ?idTranzactie c:onorata 0.
+      } 
+    }';
+  $resursaTranzactii=$client->query($sqlTranzactii);
+  
+  foreach($resursaTranzactii as $rowTranzactie){
+    $idTranzactie = parse_url($rowTranzactie->idTranzactie)["fragment"];
   ?>
   <form class="comenzi-form" action="<?=$prelucrareComenzi?>" method="POST">
-    <p class="no-margin"><em>Data comenzii:</em> <b><?=$rowTranzactie['data_tranzactie']?></b></p>
-    <p class="no-margin"><em>Client:</em> <b><?=$rowTranzactie['nume_cumparator']?></b></p> 
-    <p class="no-margin"><em>Adresa client:</em> <b><?=$rowTranzactie['adresa_cumparator']?></b></p>
+    <p class="no-margin"><em>Data comenzii:</em> <b><?=$rowTranzactie->dataTranzactie?></b></p>
+    <p class="no-margin"><em>Client:</em> <b><?=$rowTranzactie->numeCumparator?></b></p> 
+    <p class="no-margin"><em>Adresa client:</em> <b><?=$rowTranzactie->adresaCumparator?></b></p>
     <div class="comenzi-table">
       <div class="comenzi-table-row">
         <p class="width70 no-margin bold">Titlu / Autor</p>
@@ -40,26 +64,61 @@
         <p class="width10 no-margin bold center-text">Total</p>
       </div>
       <?php 
-        $sqlCarti = "SELECT titlu, nume_autor, pret, nr_buc FROM vanzari, carti, autori WHERE carti.id_carte=vanzari.id_carte AND carti.id_autor=autori.id_autor AND id_tranzactie=".$rowTranzactie['id_tranzactie'];
-        $resursaCarti = mysqli_query($con, $sqlCarti);
-        while($rowCarte = mysqli_fetch_array($resursaCarti)){
+        $sqlCarti = 'PREFIX c: <http://chinde.ro#>
+        select ?titlu ?numeAutor ?pret ?nrBuc ((?pret * ?nrBuc) as $total) where {
+            GRAPH c:Vanzari {
+                ?idV c:carte ?idCarte.
+                ?idV c:bucati ?nrBuc.
+                ?idV c:idTranz c:'.$idTranzactie.'.
+            }
+            GRAPH c:Carti {
+                ?idCarte c:titlu ?titlu.
+                ?idCarte c:autor ?idAutor.
+                ?idCarte c:pret ?pret.
+                
+            }
+            GRAPH c:Autori {
+                ?idAutor c:numeAutor ?numeAutor.
+            }
+        }';
+        $sqlTotalGeneral = 'PREFIX c: <http://chinde.ro#>
+        select (sum(?total) as ?totalGeneral) where {
+            select ?titlu ?numeAutor ?pret ?nrBuc ((?pret * ?nrBuc) as $total) where 	 {
+                GRAPH c:Vanzari {
+                    ?idV c:carte ?idCarte.
+                    ?idV c:bucati ?nrBuc.
+                    ?idV c:idTranz c:'.$idTranzactie.'.
+                }
+                GRAPH c:Carti {
+                    ?idCarte c:titlu ?titlu.
+                    ?idCarte c:autor ?idAutor.
+                    ?idCarte c:pret ?pret.
+        
+                }
+                GRAPH c:Autori {
+                    ?idAutor c:numeAutor ?numeAutor.
+                }
+            }    
+        }';
+        $resursaCarti = $client->query($sqlCarti);
+        $totalGeneral = $client->query($sqlTotalGeneral);
+        
+        foreach($resursaCarti as $rowCarte){
           print '
             <div class="comenzi-table-row">
-              <p class="width70 no-margin">'.$rowCarte['titlu'].' de '.$rowCarte['nume_autor'].' </p>
-              <p class="width10 no-margin center-text">'.$rowCarte['nr_buc'].'</p>
-              <p class="width10 no-margin center-text">'.$rowCarte['pret'].'</p>
+              <p class="width70 no-margin">'.$rowCarte->titlu.' de '.$rowCarte->numeAutor.' </p>
+              <p class="width10 no-margin center-text">'.$rowCarte->nrBuc.'</p>
+              <p class="width10 no-margin center-text">'.$rowCarte->pret.'</p>
           ';
-          $total = $rowCarte['pret'] * $rowCarte['nr_buc'];
-          print '<p class="width10 no-margin center-text">'.$total.'</p>
+          print '<p class="width10 no-margin center-text">'.$rowCarte->total.'</p>
             </div>';
-          $totalGeneral = $totalGeneral + $total;
         }
       ?>
       <div class="comenzi-table-row">
-        <input type="hidden" name="id_tranzactie" value="<?=$rowTranzactie['id_tranzactie']?>" />
+        <input type="hidden" name="id_tranzactie" value="<?=$idTranzactie?>" />
         <input type="submit" class="btn btn-primary comenzi-btn" name="comanda_onorata" value="Comanda onorata" />
         <input type="submit" class="btn btn-primary comenzi-btn" name="anuleaza_comanda" value="Anuleaza comanda" />  
-        <p class="comenzi-totalComanda no-margin width100 bold">Total comanda: <?=$totalGeneral?> lei</p>
+        <p class="comenzi-totalComanda no-margin width100 bold">Total comanda: <?=$totalGeneral[0]->totalGeneral?> lei</p>
       </div>
     </div>   
   </form>

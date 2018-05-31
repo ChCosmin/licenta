@@ -2,7 +2,7 @@
   $path = "/licenta2";
   $root = $_SERVER['DOCUMENT_ROOT']."/licenta2"; 
 
-  $connect    = $root . '/componente/conectare.php';
+  // $connect    = $root . '/componente/conectare.php';
   $header     = $root . '/componente/header.php';
   $footer     = $root . '/componente/footer.php';
   $autor = $path . '/componente/autor.php';
@@ -10,7 +10,6 @@
   $faraCoperta = $path . '/assets/covers';
   session_start(); 
   
-  // require '../vendor/autoload.php';
   
   function mysqli_result($res, $row, $field=0) {     
     $res->data_seek($row); 
@@ -18,23 +17,21 @@
     return $datarow[$field]; 
   }
   
-  include($connect);
+  // include($connect);
   include($header);
   include('../assets/Zebra_Pagination.php');
+  
   include($vendor);
   $client = new EasyRdf_Sparql_Client("http://localhost:7200/repositories/librarie_licenta");
   
   
   $id_domeniu = $_GET['id_domeniu'];
-  // $selectDomeniu = "SELECT nume_domeniu FROM domenii WHERE id_domeniu=".$id_domeniu;
   $selectDomeniu = 'PREFIX c: <http://chinde.ro#>
   select ?numeDomeniu where {
       GRAPH c:Domenii { c:'.$id_domeniu.' c:numeDomeniu ?numeDomeniu }
   }'; 
-  // $resursaDomeniu = mysqli_query($con, $selectDomeniu);
   $resursaDomeniu = $client->query($selectDomeniu);    
   
-  // $numeDomeniu = mysqli_result($resursaDomeniu, 0, "nume_domeniu");
 
   //PAGINATION
     // how many records should be displayed on a page?
@@ -104,7 +101,6 @@
   <div class="container-carti-domeniu">
     <?php 
     $index = 0; 
-    // while ($row = mysqli_fetch_assoc($result)):
     foreach($result as $row){
     $idCarte = parse_url($row->idCarte)["fragment"];
     ?>    
@@ -116,7 +112,6 @@
         } else {
           print '<img class="card-img-top" src="'.$faraCoperta.'/no-cover.jpg" alt="book-cover" />';
         }
-        // $autorQ = "SELECT id_autor FROM autori WHERE nume_autor='".$row['nume_autor']."'";
         $autorQ = "PREFIX c: <http://chinde.ro#>
           select ?idAutor where {
             GRAPH c:Autori {
@@ -124,10 +119,8 @@
             }
           }
         ";
-        // $resursaAutor = mysqli_query($con, $autorQ);
         $resursaAutor = $client->query($autorQ);    
         $idAutor = parse_url($resursaAutor[0]->idAutor)["fragment"];
-        // $rowAutor = mysqli_fetch_array($resursaAutor);
       ?>
       <div class="card-body">
         <h5 class="card-title"><?php echo $row->titlu ?></h5>

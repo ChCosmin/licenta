@@ -2,107 +2,251 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 c:Carti {
-  c:RomeoSiJulieta 
-    c:domeniu c:Teatru; 
-    c:autor c:Shakespear; 
-    c:titlu "Romeo si Julieta"; 
-    c:descriere "Cea mai frumoasa poveste de dragoste";
-    c:pret 1;
-    c:data "2018-01-04"^^xsd:date;
+  c:Graceling
+    c:domeniu c:Aventura;
+    c:autor c:Cashore;
+    c:titlu "Graceling (Graceling Realm, #1)";
+    c:descriere "Katsa has been able to kill a man with her bare hands since she was eight—she’s a Graceling, one of the rare people in her land born with an extreme skill. As niece of the king, she should be able to live a life of privilege, but Graced as she is with killing, she is forced to work as the king’s thug. She never expects to fall in love with beautiful Prince Po. She never expects to learn the truth behind her Grace—or the terrible secret that lies hidden far away . . . a secret that could destroy all seven kingdoms with words alone. With elegant, evocative prose and a cast of unforgettable characters, debut author Kristin Cashore creates a mesmerizing world, a death-defying adventure, and a heart-racing romance that will consume you, hold you captive, and leave you wanting more.";
+    c:pret 30;
+    c:data "2008-01-10"^^xsd:date;
+    a c:Carte.  
+  c:PoisonStudy
+    c:domeniu c:Aventura;
+    c:autor c:Snyder;
+    c:titlu "Poison Study (Study)";
+    c:descriere "About to be executed for murder, Yelena is offered an extraordinary reprieve. She’ll eat the best meals, have rooms in the palace—and risk assassination by anyone trying to kill the Commander of Ixia. And so Yelena chooses to become a food taster. But the chief of security, leaving nothing to chance, deliberately feeds her Butterfly’s Dust—and only by appearing for her daily antidote will she delay an agonizing death from the poison. As Yelena tries to escape her new dilemma, disasters keep mounting. Rebels plot to seize Ixia and Yelena develops magical powers she can’t control. Her life is threatened again and choices must be made. But this time the outcomes aren’t so clear...";
+    c:pret 50;
+    c:data "2007-01-03"^^xsd:date;
     a c:Carte.
-
-  c:Hamlet
-    c:domeniu c:Teatru; 
-    c:autor c:Shakespear; 
-    c:titlu "Hamlet"; 
-    c:pret 2;
-    c:data "2018-01-05"^^xsd:date;
+  c:ThroneOfGlass
+    c:domeniu c:Aventura;
+    c:autor c:Mass;
+    c:titlu "Throne of Glass";
+    c:descriere "After serving out a year of hard labor in the salt mines of Endovier for her crimes, 18-year-old assassin Celaena Sardothien is dragged before the Crown Prince. Prince Dorian offers her her freedom on one condition: she must act as his champion in a competition to find a new royal assassin. Her opponents are men-thieves and assassins and warriors from across the empire, each sponsored by a member of the king’s council. \If she beats her opponents in a series of eliminations, she’ll serve the kingdom for four years and then be granted her freedom. Celaena finds her training sessions with the captain of the guard, Westfall, challenging and exhilarating. But she’s bored stiff by court life. Things get a little more interesting when the prince starts to \show interest in her ... but it’s the gruff Captain Westfall who seems to understand her best. Then one of the other contestants turns up dead ... quickly followed by another. Can Celaena figure out who the killer is before she becomes a victim? As the young assassin investigates, her search leads her to discover a greater destiny than she could possibly have imagined.";
+    c:pret 25;
+    c:data "2012-07-08"^^xsd:date;
     a c:Carte.
-
-  c:Poezii
-    c:domeniu c:Poezii; 
-    c:autor c:Eminescu; 
-    c:titlu "Poezii"; 
-    c:descriere "Cele mai frumoase poezii";
-    c:pret 3;
-    c:data "2018-01-01"^^xsd:date;
+  c:Fire
+    c:domeniu c:Aventura;
+    c:autor c:Cashore;
+    c:titlu "Fire (Graceling Realm, #2)";
+    c:descriere "Fire is one of the most dangerous monsters of all - a human one. Marked out by her vivid red hair, she’s more than attractive. But with this extraordinary beauty comes influence and power. Aware of her power, Fire lives in a corner of the world away from people. But now the day has come when she is needed by her king.";
+    c:pret 30;
+    c:data "2009-24-09"^^xsd:date;
     a c:Carte.
-
-  c:Poezii2
-    c:domeniu c:Poezii; 
-    c:autor c:Eminescu; 
-    c:titlu "Poezii, volumul 2"; 
-    c:descriere "Carte de poezii";
-    c:pret 4;
-    c:data "2018-01-02"^^xsd:date;
-    a c:Carte.
-
-  c:Poezii3
-    c:domeniu c:Poezii; 
-    c:autor c:Eminescu; 
-    c:titlu "Poezii, volumul 3"; 
-    c:descriere "Carte de poezii";
-    c:pret 5;
-    c:data "2018-01-04"^^xsd:date;
-    a c:Carte.
-
-  c:LegendeleOlimpului
-    c:domeniu c:Povesti; 
-    c:autor c:Mitru; 
-    c:titlu "Legendele Olimpului"; 
-    c:pret 6;
-    c:data "2018-01-27"^^xsd:date;
-    a c:Carte.
-
-  c:FireDeTort
-    c:domeniu c:Poezii; 
-    c:autor c:Cosbuc; 
-    c:titlu "Fire de tort - Poezii"; 
-    c:descriere "Carte de poezii";
-    c:pret 7;
+  c:Rebound
+    c:domeniu c:Poezii;
+    c:autor c:Alexander;
+    c:titlu "Rebound (The Crossover 0.5)";
+    c:descriere "Before Josh and Jordan Bell were streaking up and down the court, their father was learning his own moves. In this prequel to Newbery Medal winner The Crossover, Chuck Bell takes center stage, as readers get a glimpse of his childhood and how he became the jazz music worshipping, basketball star his sons look up to.";
+    c:pret 15;
     c:data "2018-02-04"^^xsd:date;
     a c:Carte.
+  c:ForEveryone
+    c:domeniu c:Poezii;
+    c:autor c:Reynolds;
+    c:titlu "For Everyone";
+    c:descriere "Originally performed at the Kennedy Center for the unveiling of the Martin Luther King Jr. Memorial, and later as a tribute to Walter Dean Myers, this stirring and inspirational poem is New York Times bestselling author and National Book Award finalist Jason Reynolds’s rallying cry to the dreamers of the world. For Every One is just that: for every one. For every one person. For every one dream. But especially for every one kid. The kids who dream of being better than they are. Kids who dream of doing more than they almost dare to dream. Kids who are like Jason Reynolds, a self-professed dreamer. Jason does not claim to know how to make dreams come true; he has, in fact, been fighting on the front line of his own battle to make his own dreams a reality. He expected to make it when he was sixteen. Then eighteen. Then twenty-five. Now, some of those expectations have been realized. But others, the most important ones, lay ahead, and a lot of them involve kids, how to inspire them. All the kids who are scared to dream, or don’t know how to dream, or don’t dare to dream because they’ve NEVER seen a dream come true. Jason wants kids to know that dreams take time. They involve countless struggles. But no matter how many times a dreamer gets beat down, the drive and the passion and the hope never fully extinguish—because just having the dream is the start you need, or you won’t get anywhere anyway, and that is when you have to take a leap of faith. A pitch perfect graduation, baby, or love my kid gift. ";
+    c:pret 20;
+    c:data "2018-10-04"^^xsd:date;
+    a c:Carte.
+  c:Sunny
+    c:domeniu c:Poezii;
+    c:autor c:Reynolds;
+    c:titlu "Sunny (Track #3)";
+    c:descriere "Sunny Lancaster is a winner. Wih-winner. When it comes to the 1600 meter, Sunny can beat anyone by, well, a mile. But for Sunny, winning is boring. Buh-boring. Truth is, Sunny doesn’t like running. Never has. What Sunny really loves... is dancing. The boom-bap bap of his teacher. Aurelia’s dance routines beats the chick chick chick of his track meets any day. Sunny loves his team, though, so he can’t quit, but he also can’t be on a track team not run. And he definitely can’t be on a track team and dance. But it turns out track isn’t just chick chick chick. It’s also whoosh whoosh ahh. If Sunny lets loose everything he’s been holding inside, will it be his best move ever, or will it be his biggest mistake?";
+    c:pret 25;
+    c:data "2018-10-04"^^xsd:date;
+    a c:Carte.
+  c:LongWayDown
+    c:domeniu c:Poezii;
+    c:autor c:Reynolds;
+    c:titlu "Long Way Down";
+    c:descriere "A cannon. A strap. A piece. A biscuit. A burner. A heater. A chopper. A gat. A hammer. A tool for RULE. Or, you can call it a gun. That’s what fifteen-year-old Will has shoved in the back waistband of his jeans. See, his brother Shawn was just murdered. And Will knows the rules. No crying. No snitching. Revenge. That’s where Will’s now heading, with that gun shoved in the back waistband of his jeans, the gun that was his brother’s gun. He gets on the elevator, seventh floor, stoked. He knows who he’s after. Or does he?  As the elevator stops on the sixth floor, on comes Buck. Buck, Will finds out, is who gave Shawn the gun before Will took the gun. Buck tells Will to check that the gun is even loaded. And that’s when Will sees that one bullet is missing. And the only one who could have fired Shawn’s gun was Shawn. Huh. Will didn’t know that Shawn had ever actually used his gun. Bigger huh. BUCK IS DEAD. But Buck’s in the elevator? Just as Will’s trying to think this through, the door to the next floor opens. A teenage girl gets on, waves away the smoke from Dead Buck’s cigarette. Will doesn’t know her, but she knew him. Knew. When they were eight. And stray bullets had cut through the playground, and Will had tried to cover her, but she was hit anyway, and so what she wants to know, on that fifth floor elevator stop, is, what if Will, Will with the gun shoved in the back waistband of his jeans, MISSES. And so it goes, the whole long way down, as the elevator stops on each floor, and at each stop someone connected to his brother gets on to give Will a piece to a bigger story than the one he thinks he knows. A story that might never know an END…if WILL gets off that elevator.";
+    c:pret 30;
+    c:data "2017-24-10"^^xsd:date;
+    a c:Carte.
+  c:AGenerousLatitude
+    c:domeniu c:Poezii;
+    c:autor c:Grace;
+    c:titlu "A Generous Latitude";
+    c:descriere "Lenea Grace’s debut collection maps a series of relationships within a greater exploration of Canadiana, barreling through shield and crag, river and slag. A Generous Latitude is not afraid of beer, bears, internal rhyme, David Hasselhoff, sediment, or sentiment. It does, however, eschew sliding down lampposts, CBC sitcoms, McGarrigles, and the sentimental. Taking humor in the human condition, A Generous Latitude toys with juxtapositions of the serious with the silly, the irreverent with more somber realities. Music both teases and generates the poems within the collection. Here, Guy Lafleur’s hockey-disco hybrid album is on par with the Righteous Brothers and Fleetwood Mac. Here, “I’m not smoking and it’s not analog, / but at 2 a.m., it is always 1979.” A Generous Latitude takes a wild, peculiar joy in supplanting the expected with rich imagery that lights the mundane and “strips the Atlantic bare.”";
+    c:pret 20;
+    c:data "2018-17-04"^^xsd:date;
+    a c:Carte.
+  c:PaperGirls4
+    c:domeniu c:Comics;
+    c:autor c:Vaughan;
+    c:titlu "Paper Girls, Vol. 4 (Paper Girls #4)";
+    c:descriere "The mind-bending, time-warping adventure from BRIAN K. VAUGHAN and CLIFF CHIANG continues, as intrepid newspaper deliverer Tiffany is launched from the prehistoric past into the year 2000! In this harrowing version of our past, Y2K was even more of a cataclysm than experts feared, and the only person who can save the future is a 12-year-old girl from 1988. Collects issues 16 through 20!";
+    c:pret 45;
+    c:data "2018-10-04"^^xsd:date;
+    a c:Carte.
+  c:PaperGirls1
+    c:domeniu c:Comics;
+    c:autor c:Vaughan;
+    c:titlu "Paper Girls, Vol. 1 (Paper Girls #1)";
+    c:descriere "In the early hours after Halloween of 1988, four 12-year-old newspaper delivery girls uncover the most important story of all time. Suburban drama and otherworldly mysteries collide in this smash-hit series about nostalgia, first jobs, and the last days of childhood. Collects Paper Girls #1-5.";
+    c:pret 40;
+    c:data "2016-05-04"^^xsd:date;
+    a c:Carte.
+  c:MyBoyfriendIsABear
+    c:domeniu c:Comics;
+    c:autor c:Ribon;
+    c:titlu "My Boyfriend Is a Bear";
+    c:descriere "Bear meets girl. Nora has bad luck with men. When she meets an (actual) bear on a hike in the Los Angeles hills, he turns out to be the best romantic partner she’s ever had! He’s considerate, he’s sweet, he takes care of her. But he’s a bear, and winning over her friends and family is difficult. Not to mention he has to hibernate all winter. Can true love conquer all?";
+    c:pret 30;
+    c:data "2018-24-04"^^xsd:date;
+    a c:Carte.
+  c:TheBeloveds
+    c:domeniu c:Drama;
+    c:autor c:Lindley;
+    c:titlu "The Beloveds";
+    c:descriere "An exploration of domestic derangement, as sinister as Daphne Du Maurier’s classic Rebecca, that plumbs the depths of sibling rivalry with wit and menace. Oh, to be a Beloved—one of those lucky people for whom nothing ever goes wrong. Everything falls into their laps without effort: happiness, beauty, good fortune, allure. Betty Stash is not a Beloved—but her little sister, the delightful Gloria, is. She’s the one with the golden curls and sunny disposition and captivating smile, the one whose best friend used to be Betty’s, the one whose husband should have been Betty’s. And then, to everyone’s surprise, Gloria inherits the family manse—a vast, gorgeous pile of ancient stone, imposing timbers, and lush gardens—that was never meant to be hers. Losing what Betty considers her rightful inheritance is the final indignity. As she single-mindedly pursues her plan to see the estate returned to her in all its glory, her determined and increasingly unhinged behavior—aided by poisonous mushrooms, talking walls, and a phantom dog—escalates to the point of no return. The Beloveds will have you wondering if there’s a length to which an envious sister won’t go.";
+    c:pret 45;
+    c:data "2018-03-04"^^xsd:date;
+    a c:Carte.
+  c:TheMusicAndTheMirror
+    c:domeniu c:Drama;
+    c:autor c:Keeley;
+    c:titlu "The Music and the Mirror";
+    c:descriere "Anna is the newest member of an elite ballet company. Her first class with her mysterious idol, Victoria, almost ruins her career before it starts. When she shows she might be a potential star, Victoria chooses Anna to launch a new season around. Now Anna must face down jealousy, sabotage and injury, not to mention navigate the circus of friends and lovers within the company. The pressure builds as she knows she must pour everything she has into opening night and prove to her rivals and herself that Victoria’s faith in her is not misplaced. In the process, Anna discovers that she and the daring, beautiful Victoria have a lot more than a talent for ballet in common, and that not every thrilling dance can be found on stage.";
+    c:pret 50;
+    c:data "2018-04-04"^^xsd:date;
+    a c:Carte.
 
-  c:GeniuPustiu
-    c:domeniu c:Povesti; 
-    c:autor c:Eminescu; 
-    c:titlu "Genius Pustiu"; 
-    c:pret 8;
-    c:data "2017-12-03"^^xsd:date;
+  c:DevilsUntoDust
+    c:domeniu c:Horror;
+    c:autor c:Berquist;
+    c:titlu "Devil Unto Dust";
+    c:descriere "Ten years ago, a horrifying disease began spreading across the West Texas desert. Infected people—shakes—attacked the living and created havoc and destruction. No one has ever survived the infection. Daisy Wilcox, known as Willie, has been protecting her siblings within the relatively safe walls of Glory, Texas. When Willie’s good-for-nothing father steals a fortune from one of the most dangerous shake-hunters in town, she finds herself on the hook for his debt. With two hunters, including the gruff and handsome Ben, to accompany her, she sets out across the desert in search of her father. But the desert is not kind to travelers, and not everyone will pass through alive.";
+    c:pret 30;
+    c:data "2018-10-04"^^xsd:date;
+    a c:Carte.
+  c:LoveAndOtherWords
+    c:domeniu c:Romanta;
+    c:autor c:Lauren;
+    c:titlu "Love and Other Words";
+    c:descriere "Love, loss, friendship, and the betrayals of the past all collide in this first fiction novel from New York Times and #1 international bestselling author Christina Lauren (Autoboyography, Dating You / Hating You). The story of the heart can never be unwritten. Macy Sorensen is settling into an ambitious if emotionally tepid routine: work hard as a new pediatrics resident, plan her wedding to an older, financially secure man, keep her head down and heart tucked away. But when she runs into Elliot Petropoulos—the first and only love of her life—the careful bubble she’s constructed begins to dissolve. Once upon a time, Elliot was Macy’s entire world—growing from her gangly bookish friend into the man who coaxed her heart open again after the loss of her mother...only to break it on the very night he declared his love for her. Told in alternating timelines between Then and Now, teenage Elliot and Macy grow from friends to much more—spending weekends and lazy summers together in a house outside of San Francisco devouring books, sharing favorite words, and talking through their growing pains and triumphs. As adults, they have become strangers to one another until their chance reunion. Although their memories are obscured by the agony of what happened that night so many years ago, Elliot will come to understand the truth behind Macy’s decade-long silence, and will have to overcome the past and himself to revive her faith in the possibility of an all-consuming love.";
+    c:pret 40;
+    c:data "2018-10-04"^^xsd:date;
+    a c:Carte.
+  c:StarryEyes
+    c:domeniu c:Romanta;
+    c:autor c:Bennett;
+    c:titlu "Starry Eyes";
+    c:descriere "Ever since last year’s homecoming dance, best friends-turned-best enemies Zorie and Lennon have made an art of avoiding each other. It doesn’t hurt that their families are the modern day, Californian version of the Montagues and Capulets. But when a group camping trip goes south, Zorie and Lennon find themselves stranded in the wilderness. Alone. Together.What could go wrong?With no one but each other for company, Zorie and Lennon have no choice but to hash out their issues via witty jabs and insults as they try to make their way to safety. But fighting each other while also fighting off the forces of nature makes getting out of the woods in one piece less and less likely.And as the two travel deeper into Northern California’s rugged backcountry, secrets and hidden feelings surface. But can Zorie and Lennon’s rekindled connection survive out in the real world? Or was it just a result of the fresh forest air and the magic of the twinkling stars?";
+    c:pret 10;
+    c:data "2018-03-04"^^xsd:date;
+    a c:Carte.
+  c:ComeAsYouAre
+    c:domeniu c:Romanta;
+    c:autor c:Blakely;
+    c:titlu "Come As You Are";
+    c:descriere "For one fantastic evening, at a masquerade party in the heart of Manhattan, I’m not the millionaire everyone wants a piece of. Fine—multimillionaire. But who’s counting all those commas? Not me, and not the most intriguing woman I’ve ever met, who happens to like dancing, witty banter, and hot, passionate up-against-the-wall sex as much as I do. There’s no need for names or business cards. And that’s why I’m eager to get to know her more, since my mystery woman seems to like me for me, rather than for my huge…bank account. Everything’s coming up aces. Until the next day when things get a little complicated. (Newsflash — a lot complicated.) ***** He’s charming, brilliant, an incredible lover, and right now I want to stab fate in the eyeballs. I’ve had one goal I’ve been working toward, and lo and behold, my mystery man is the very person who stands between me and my dream job. A job I desperately need since my hard-knock life has nothing in common with his star-kissed one. But it’s time to put that fairytale night behind me, and focus on learning what makes him tick. Too bad it turns out his quirks are my quirks, and his love affair with New York matches mine. And as we spend our days together, I discover something else that feels like a cruel twist of fate — I’m falling for this naughty prince charming, and that’s not an ending I can write to our story.";
+    c:pret 10;
+    c:data "2018-16-04"^^xsd:date;
+    a c:Carte.
+  c:Circe
+    c:domeniu c:Fantasy;
+    c:autor c:Miller;
+    c:titlu "Circe";
+    c:descriere "In the house of Helios, god of the sun and mightiest of the Titans, a daughter is born. But Circe is a strange child--not powerful, like her father, nor viciously alluring like her mother. Turning to the world of mortals for companionship, she discovers that she does possess power--the power of witchcraft, which can transform rivals into monsters and menace the gods themselves. Threatened, Zeus banishes her to a deserted island, where she hones her occult craft, tames wild beasts and crosses paths with many of the most famous figures in all of mythology, including the Minotaur, Daedalus and his doomed son Icarus, the murderous Medea, and, of course, wily Odysseus. But there is danger, too, for a woman who stands alone, and Circe unwittingly draws the wrath of both men and gods, ultimately finding herself pitted against one of the most terrifying and vengeful of the Olympians. To protect what she loves most, Circe must summon all her strength and choose, once and for all, whether she belongs with the gods she is born from, or the mortals she has come to love. ";
+    c:pret 25;
+    c:data "2018-10-04"^^xsd:date;
+    a c:Carte.
+  c:AshPrincess
+    c:domenu c:Fantasy;
+    c:autor c:Sebastian;
+    c:titlu "Ash Princess (Ash Princess Trilogy #1)";
+    c:descriere "Theodosia was six when her country was invaded and her mother, the Fire Queen, was murdered before her eyes. On that day, the Kaiser took Theodosia’s family, her land, and her name. Theo was crowned Ash Princess--a title of shame to bear in her new life as a prisoner. For ten years Theo has been a captive in her own palace. She’s endured the relentless abuse and ridicule of the Kaiser and his court. She is powerless, surviving in her new world only by burying the girl she was deep inside. Then, one night, the Kaiser forces her to do the unthinkable. With blood on her hands and all hope of reclaiming her throne lost, she realizes that surviving is no longer enough. But she does have a weapon: her mind is sharper than any sword. And power isn’t always won on the battlefield. For ten years, the Ash Princess has seen her land pillaged and her people enslaved. That all ends here. ";
+    c:pret 30;
+    c:data "2018-24-02"^^xsd:date;
     a c:Carte.
 }
 
 c:Autori {
-  c:Eminescu   
-    c:numeAutor "Mihai Eminescu";
-    c:descriere "Mihai Eminescu (nascut Mihail Eminovici; n. 15/27 ianuarie 1850, Boto?ani, Moldova - d. 15/27 iunie 1889, Iasi, România) a fost un poet, prozator si jurnalist român, socotit de cititorii români si de critica literara postuma drept cea mai importanta voce poetica din literatura româna. Receptiv la romantismele europene de secol XVIII si XIX, a asimilat viziunile poetice occidentale, creatia sa apartinând unui romantism literar relativ întârziat. In momentul în care Mihai Eminescu a recuperat temele traditionale ale Romantismului european, gustul pentru trecut si pasiunea pentru istoria nationala, careia a dorit chiar sa-i construiasca un Pantheon de voievozi, nostalgia regresiva pentru copilarie, melancolia si cultivarea starilor depresive, întoarcerea în natura etc., poezia europeana descoperea paradigma modernismului, prin Charles Baudelaire sau Stéphane Mallarmé, bunaoara. Poetul avea o buna educatie filosofica, opera sa poetica fiind influentata de marile sisteme filosofice ale epocii sale, de filosofia antica, de la Heraclit la Platon, de marile sisteme de gândire ale romantismului, de teoriile lui Arthur Schopenhauer, Immanuel Kant (de altfel Eminescu a lucrat o vreme la traducerea tratatului acestuia Critica ratiunii pure, la îndemnul lui Titu Maiorescu, cel care îi ceruse sa-si ia doctoratul în filosofia lui Kant la Universitatea din Berlin, plan nefinalizat pâna la urma) si de teoriile lui Hegel.";
-    c:sursaDescriere "https://ro.wikipedia.org/wiki/Mihai_Eminescu";
+  c:Cashore
+    c:numeAutor "Kristin Cashore";
+    c:descriere "So, here’s the short tale of me: I grew up in the countryside of northeastern Pennsylvania in a village with cows and barns and beautiful views from the top of the hill and all that good stuff. I lived in a rickety old house with my parents, three sisters, and a scattering of cats, and I READ READ READ READ READ. I read \while brushing my teeth, I read \while chopping parsley, the first thing I reached \for when I woke up in the morning was my book, the only two places I didn’t read were in the car and in bed. What did I do then? The one thing I liked even more than reading: I daydreamed. And so, without knowing it, I was planting the seeds. Reading and daydreaming = perfect preparation for writing.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/1373880.Kristin_Cashore";
     a c:Autor.
-  c:Mitru 
-    c:numeAutor "Alexandru Mitru"; 
+  c:Snyder
+    c:numeAutor "Maria V. Snyder";
+    c:descriere "Meteorologist turned novelist, Maria’s been writing fantasy and science fiction since she was bored at work and needed something creative to \do. A dozen novels and numerous short stories later, Maria’s learned a thing or three about writing. She’s been on the New York Times bestseller list, won a half-dozen awards, and has earned her MA degree in Writing from Seton Hill University where she’s been happily sharing her knowledge with the current crop of MFA students. She also enjoys creating new worlds where horses and swords rule, ’cause let’s face it, they’re cool, although she’s been known to trap her poor characters in a giant metal cube and let them figure out how to get out.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/445303.Maria_V_Snyder";
     a c:Autor.
-
-  c:Cosbuc     
-    c:numeAutor "George Cosbuc";
-    c:descriere "George Cosbuc (n. 20 septembrie 1866, satul Hordou din Districtul Nasaud, comitatul Bistrita-Nasaud, azi, comuna Cosbuc, judetul Bistrita-Nasaud; d. 9 mai 1918, Bucuresti) a fost un poet, critic literar si traducator român din Transilvania, membru titular al Academiei Române din anul 1916.
-
-    Poezia sa apartine patrimoniului cultural national si desi este considerat un poet care a scris poezii ce se recitau la serbarile scolare sau populare, creatia sa îl recomanda drept un autor clasic al literaturii române, un om cu un gust literar desavîrsit si un autor canonic, care nu poate lipsi din manualele scolare nici în ziua de azi. A dus, de asemenea, o prodigioasa activitate de iluminare a taranilor, e un precursor al miscarii poporaniste si un tehnician desavîrsit al prozodiei, folosea o gama foarte variata de picioare metrice si de ritmuri, de la cele ale poeziei populare la terza rima. A dat o versiune completa a operei lui Dante, Divina comedie. A tradus foarte mult din lirica straina si a adaptat prin localizare la sufletul si mediul taranesc Eneida si Odiseea (Iliada a fost tradusa de contemporanul sau, George Murnu) si a introdus specii ale poeziei orientale, cum ar fi gazelul, în poezia româna. Toate aceste calitati îl recomanda pentru pozitia pe care o ocupa, de autor clasic, dar mai ales simtul echilibrului si faptul ca a scos în evidenta partea solara, idilica, a sufletului taranului român.";
-    c:sursaDescriere "https://ro.wikipedia.org/wiki/George_Co%C8%99buc";
+  c:Maas
+    c:numeAutor "Sarah J. Maas";
+    c:descriere: "Sarah J. Maas is the New York Times and USA Today bestselling author of the Throne of Glass series (Queen of Shadows, Book 4, will be out in September 2015), as well as the A Court of Thorns and Roses series (out 5/5/15).";
+    c:sursaDescriere "https://www.goodreads.com/author/show/3433047.Sarah_J_Maas";
     a c:Autor.
- 
-  c:Shakespear 
-    c:numeAutor "William Shakespear";
-    c:descriere "William Shakespeare (n. 23 aprilie 1564, Stratford-upon-Avon, Regatul Angliei - d. 23 aprilie/3 mai 1616, Stratford-upon-Avon, Regatul Angliei) a fost un dramaturg si poet englez, considerat cel mai mare scriitor al literaturii de limba engleza si supranumit ,Poetul din Avon (în engleza 'Bard of Avon') sau ,Lebada de pe Avon ('The Swan of Avon'). Din vasta sa opera - parte realizata în colaborare - s-au pastrat aproape 38 de piese de teatru, 154 de sonete, 2 lungi poeme narative, precum si alte multe poezii traduse în aproape fiecare limba vorbita.";
-    c:sursaDescriere "https://ro.wikipedia.org/wiki/William_Shakespeare";
-    a c:Autor.  
+  c:Alexander
+    c:numeAutor "Kwame Alexander";
+    c:descriere "Kwame Alexander is a poet, educator, and New York Times Bestselling author of 21 books, including THE CROSSOVER, which received the 2015 John Newbery Medal for the Most Distinguished Contribution to American literature for Children, the Coretta Scott King Author Award Honor, The NCTE Charlotte Huck Honor, the Lee Bennett Hopkins Poetry Award, and the Passaic Poetry Prize. Kwame writes for children of all ages. His other works include SURF’S UP, a picture book, BOOKED, a middle grade novel, and He Said She Said, a YA novel.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/326609.Kwame_Alexander";
+    a c:Autor.
+  c:Reynolds
+    c:numeAutor "Jason Reynolds";
+    c:descriere "After earning a BA in English from The University of Maryland, College Park, he moved to Brooklyn, New York, where you can often find him walking the four blocks from the train to his apartment talking to himself. Well, not really talking to himself, but just repeating character names and plot lines he thought of on the train, over and over again, because he’s afraid he’ll forget it all before he gets home.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/1229281.Jason_Reynolds";
+    a c:Autor.
+  c:Grace
+    c:numeAutor "Lenea Grace";
+    a c:Autor.
+  c:Vaughan
+    c:numeAutor "Brian K. Vaughan";
+    c:descriere "Born in Cleveland in 1976, Brian K. Vaughan is the Eisner, Harvey, and Shuster Award-winning writer and co-creator of the critically acclaimed comics series Y: The Last Man, Runaways, and Ex Machina (picked as one of the ten best works of fiction of 2005 by Entertainment Weekly). Recently named “Writer of the Year” by Wizard Magazine, and one of the “top ten comic writers of all time” by Comic Book Resources, Vaughan’s work has been featured and/or reviewed in countless mainstream media outlets, including The New York Times, MTV, National Public Radio, and feminist magazine Bust, which photographed him for their “Men We Love” issue (don’t ask).";
+    c:sursaDescriere "https://www.goodreads.com/author/show/24514.Brian_K_Vaughan";
+    a c:Autor.
+  c:Ribon
+    c:numeAutor "Pamela Ribon";
+    c:descriere "Pamela Ribon is a screenwriter (Moana, Smurfs: The Lost Village), TV writer, comic book writer, author, and best-selling novelist. She’s currently co-writing Ralph Breaks the Internet: Wreck-It Ralph II. She was recently named one of Variety’s 10 Screenwriters to Watch and is a 2017 Film Independent Directing Lab Fellow. She has been a member of the Disney Animation StoryTrust since 2013. She was a writer and narration consultant on the DisneyNature documentary Bears.";
+    c:sursaDescrier "https://www.goodreads.com/author/show/24408.Pamela_Ribon";
+    a c:Autor.
+  c:Lindley
+    c:numeAutor "Maureen Lindley";
+    c:descriere "Maureen Lindley was born in Berkshire and grew up in Scotland. She was trained as a psychotherapist and also worked as a photographer, antique dealer and a dress designer before writing her first book, The Private Papers of Eastern Jewel. Maureen lives in the Wye valley on the Welsh borders with her husband.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/1151128.Maureen_Lindley";
+    a c:Autor.
+  c:Keeley
+    c:numeAutor "Lola Keeley";
+    a c:Autor.
+  c:Berquist
+    c:numeAutor "Emma Berquist";
+    c:descriere "Emma Berquist grew up in Austin, TX and currently lives in New Zealand. She likes horror movies and dogs and dislikes brushing her hair and writing bios.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/16628402.Emma_Berquist";
+    a c:Autor.
+  c:Lauren
+    c:numeAutor "Christiana Lauren";
+    c:descriere "Christina Lauren is the combined pen name of long-time writing partners/besties/soulmates/brain-twins Christina Hobbs and Lauren Billings. The coauthor duo writes both Young Adult and Adult Fiction, and together has produced fourteen New York Times bestselling novels. Their books have been translated into 30+ languages. (Some of these books have kissing. Some of these books have A LOT of kissing.)";
+    c:sursaDescriere "https://www.goodreads.com/author/show/6556689.Christina_Lauren";
+    a c:Autor.
+  c:Bennett
+    c:numeAutor "Jenn Bennett";
+    c:descriere "Jenn Bennett is an award-winning author of several young adult books, including ALEX, APPROXIMATELY and STARRY EYES. She also writes romance and fantasy for adults. Her books have earned multiple starred reviews, won the Romance Writers of America’s prestigious RITA® Award, and been included on Publishers Weekly Best Books annual list.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/4485813.Jenn_Bennett";
+    a c:Autor.
+  c:Blakely
+    c:numeAutor "Lauren Blakely";
+    c:descriere "A #1 New York Times Bestselling author, Lauren Blakely is known for her contemporary romance style that’s hot, sweet and sexy. She lives in California with her family and has plotted entire novels while walking her dogs. With fourteen New York Times bestsellers, her titles have appeared on the New York Times, USA Today, and Wall Street Journal Bestseller Lists more than 90 times, and she’s sold more than 2.5 million books. In March she’ll release WANDERLUST, a sexy standalone romance. ";
+    c:sursaDescriere "https://www.goodreads.com/author/show/6860216.Lauren_Blakely";
+    a c:Autor.
+  c:Miller
+    c:numeAutor "Madeline Miller";
+    c:descriere "Madeline Miller was born in Boston and grew up in New York City and Philadelphia. She attended Brown University, where she earned her BA and MA in Classics. For the last ten years she has been teaching and tutoring Latin, Greek and Shakespeare to high school students. She has also studied at the University of Chicago’s Committee on Social Thought, and in the Dramaturgy department at Yale School of Drama, where she focused on the adaptation of classical texts to modern forms. She currently lives in Cambridge, MA, where she teaches and writes. The Song of Achilles is her first novel.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/176372.Madeline_Miller";
+    a c:Autor.
+  c:Sebastian
+    c:numeAutor "Laura Sebastian";
+    c:descriere "I write YA books and I’m also entrusted with taking care of other people’s children. I write books about girls who are strong in all different ways, usually with a healthy dollop of magic and a few dragons. I live in NYC with my extraordinarily fluffy dog, Neville.";
+    c:sursaDescriere "https://www.goodreads.com/author/show/15945524.Laura_Sebastian";
+    a c:Autor.
 }
 
 c:Domenii {
   c:Poezii   c:numeDomeniu "Poezii";   a c:Domeniu.
-  c:Povesti  c:numeDomeniu "Povesti";  a c:Domeniu.
-  c:Teatru   c:numeDomeniu "Teatru";   a c:Domeniu.
-  c:Romane   c:numeDomeniu "Romane";   a c:Domeniu.
-  c:Comedie  c:numeDomeniu "Comedie";  a c:Domeniu.
+  c:Comics   c:numeDomeniu "Comics";  a c:Domeniu.
   c:Drama    c:numeDomeniu "Drama";    a c:Domeniu.
   c:Horror   c:numeDomeniu "Horror";   a c:Domeniu.
   c:Romanta  c:numeDomeniu "Romanta";  a c:Domeniu.
@@ -113,68 +257,104 @@ c:Domenii {
 
 c:Tranzactii {
   c:T1 
+    c:id 1;
     c:data "23-02-2018"^^xsd:date; 
     c:numeCumparator "Pop Ion";
     c:adresaCumparator "str. Luni 12, Brasov";
-    c:onorata 1;
+    c:onorata 0;
     a c:Tranzactie.
   c:T2 
+    c:id 2;
     c:data "02-02-2002"^^xsd:date; 
     c:numeCumparator "Aaa bbb ccc";
     c:adresaCumparator "str. Ciocarliei, Cluj";
+    c:onorata 1;
+    a c:Tranzactie.
+  c:T3 
+    c:id 3;
+    c:data "01-01-2001"^^xsd:date;
+    c:numeCumparator "zxc";
+    c:adresaCumparator "asdfasdfasdfasdf";
     c:onorata 0;
     a c:Tranzactie.
 }
 
 c:Vanzari {
   c:V1
-    c:carte c:Hamlet; 
-    c:bucati 1;
-    a c:Vanzare.
-
-  c:V1V
-    c:carte c:Poezii;
+    c:id 1;
+    c:idTranz c:T1;
+    c:carte c:Circe; 
     c:bucati 1;
     a c:Vanzare.
 
   c:V2
-    c:carte c:Poezii2;
+    c:id 2;
+    c:idTranz c:T1;
+    c:carte c:Fire;
+    c:bucati 1;
+    a c:Vanzare.
+
+  c:V3
+    c:id 3;
+    c:idTranz c:T2;
+    c:carte c:Sunny;
     c:bucati 40;
+    a c:Vanzare.
+  
+  c:V4
+    c:id 4;
+    c:idTranz c:T3;
+    c:carte c:Graceling;
+    c:bucati 2;
+    a c:Vanzare.
+  
+  c:V5
+    c:id 5;
+    c:idTranz c:T3;
+    c:carte c:AshPrincess;
+    c:bucati 10;
     a c:Vanzare.
 }
 
 c:Comentarii {
   c:Com1
-    c:carte c:RomeoSiJulieta;
+    c:id 1;
+    c:carte c:Circe;
     c:utilizator "Pop Ion";
     c:emailUtilizator <mailto:pop.ion@ceva.com>;
     c:comentariu "Cartea ii faina";
     a c:Comentariu.
 
   c:Com2
-    c:carte c:Poezii;
+    c:id 2;
+    c:carte c:ComeAsYouAre;
     c:utilizator "asdfa";
     c:emailUtilizator <mailto:cosmin.chinde@gmail.com>;
     c:comentariu "sdfasfas asdfasf sfasdfa";
     a c:Comentariu.  
 
   c:Com3
-    c:carte c:RomeoSiJulieta;
+    c:id 3;
+    c:carte c:AshPrincess;
     c:utilizator "asdfa";
     c:emailUtilizator <mailto:cosmin.chinde@gmail.com>;
     c:comentariu "Peste rau si prin padure";
+    a c:Comentariu.
+
+  c:Com4
+    c:id 4;
+    c:carte c:Rebound;
+    c:utilizator "aaaa";
+    c:emailUtilizator <mailto:cos.chi@gmail.com>;
+    c:comentariu "aaaa";
     a c:Comentariu.
 }
 
 c:Admins {
   c:Admin1
     c:adminNume "administrator";
-    c:adminParola "parola";
-    c:ultimulComentariuModerat 63;
+    c:adminParola "8287458823facb8ff918dbfabcd22ccb";
+    c:ultimulComentariuModerat 2;
     a c:Admin.
-  c:Admin2
-    c:adminNume "cosmin";
-    c:adminParola "parolacosmin";
-    c:ultimulComentariuModerat 40;
-    a c:Admin.
+
 }

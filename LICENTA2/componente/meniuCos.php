@@ -1,6 +1,6 @@
 <?php 
   $path = "/licenta2";
-  $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
+  // $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
 
   $cosIcon = $path . '/assets/img/cos-icon.png';
   $cosPath = $path . '/componente/cos.php';

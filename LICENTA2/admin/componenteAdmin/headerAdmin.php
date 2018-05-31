@@ -1,6 +1,6 @@
 <?php
   $path = "/licenta2";
-  $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
+  // $root = $_SERVER['DOCUMENT_ROOT']."/licenta2";
   $adminPath = $path . '/admin/componenteAdmin/admin.php';
 
   $logoPath = $path . '/assets/img/logo.png';
